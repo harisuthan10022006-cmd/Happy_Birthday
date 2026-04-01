@@ -4,150 +4,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Something special for Someone speical❤️</title>
+<title>For You 💙</title>
+
+<!-- Fonts -->
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&display=swap" rel="stylesheet">
 
 <style>
 body {
-margin: 0;
-body {
-    font-family: 'Poopins' , sans-serif;
-}
-h1{
-    font-family: 'Dancing Script', cursive;
-    }
-background: linear-gradient(135deg, #4facfe, #00f2fe);
-color: white;
-text-align: center;
-overflow-x: hidden;
-overflow-y: auto;
-scroll-behavior: smooth;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 /* Floating bubbles */
 .bubble {
-position: fixed;
-bottom: -20px;
-background: rgba(255,255,255,0.3);
-border-radius: 50%;
-animation: floatUp 8s linear infinite;
+    position: fixed;
+    bottom: -20px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    animation: floatUp 8s linear infinite;
 }
 
 @keyframes floatUp {
-0% { transform: translateY(0); opacity: 0.7;}
-100% { transform: translateY(-100vh); opacity: 0;}
+    0% { transform: translateY(0); opacity: 0.7;}
+    100% { transform: translateY(-100vh); opacity: 0;}
 }
 
 .container {
-padding: 60px 20px;
-animation: fadeIn 1.5s ease;
+    padding: 60px 20px;
+    animation: fadeIn 1.5s ease;
 }
 
 h1 {
-font-size: 3em;
-animation: glow 2s ease-in-out infinite alternate;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3em;
+    animation: glow 2s ease-in-out infinite alternate;
 }
 
-/* Glow effect */
+/* Glow */
 @keyframes glow {
-from { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
-to { text-shadow: 0 0 25px rgba(255,255,255,0.9); }
+    from { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+    to { text-shadow: 0 0 25px rgba(255,255,255,0.9); }
 }
 
+/* Letter box */
+.letter {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    margin: auto;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.letter h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+}
+
+.letter-text {
+    font-size: 1.1em;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+/* Typing */
 .typing {
-font-size: 1.3em;
-max-width: 650px;
-margin: auto;
-border-right: 2px solid white;
-white-space: pre-line;
-overflow: hidden;
+    font-size: 1.3em;
+    max-width: 650px;
+    margin: auto;
+    border-right: 2px solid white;
+    white-space: pre-line;
+    overflow: hidden;
 }
 
-/* Button animation */
+/* Button */
 button {
-margin-top: 30px;
-padding: 12px 28px;
-border: none;
-border-radius: 30px;
-background: white;
-color: #4facfe;
-font-size: 16px;
-cursor: pointer;
-animation: pulse 2s infinite;
+    margin-top: 25px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #4facfe;
+    font-size: 16px;
+    cursor: pointer;
+    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-0% { transform: scale(1);}
-50% { transform: scale(1.08);}
-100% { transform: scale(1);}
+    0% { transform: scale(1);}
+    50% { transform: scale(1.08);}
+    100% { transform: scale(1);}
 }
 
 .hidden {
-display: none;
+    display: none;
 }
 
 @keyframes fadeIn {
-from { opacity: 0; transform: translateY(20px);}
-to { opacity: 1; transform: translateY(0);}
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 
 .countdown {
-font-size: 1.5em;
-margin-top: 25px;
-font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 25px;
+    font-weight: bold;
 }
-
 </style>
 
 </head>
 
 <body>
 
+<!-- Floating bubbles -->
+
+<script>
+setInterval(() => {
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    const size = Math.random() * 20 + 10;
+    bubble.style.width = size + "px";
+    bubble.style.height = size + "px";
+    bubble.style.left = Math.random() * 100 + "vw";
+
+    document.body.appendChild(bubble);
+
+    setTimeout(() => bubble.remove(), 8000);
+}, 500);
+</script>
+
+<!-- PAGE 1 (LETTER) -->
+
 <div class="container" id="page1">
-    <h1>Hey You 💫</h1>
-    <p>I made something… just for you.</p>
-    <button onclick="nextPage()">Click here ❤️</button>
+    <div class="letter">
+        <h2>To You 💙</h2>
+
+```
+    <p class="letter-text">
+```
+
+I didn’t plan this… honestly.
+
+But after meeting you, something stayed in my mind.
+
+I wasn’t able to talk much that day…
+maybe because I didn’t want to mess things up.
+
+Still… that little time meant more than I expected.
+
+So I made something small.
+
+Not perfect… but real. </p>
+
+```
+    <button onclick="nextPage()">Open it 💫</button>
+</div>
+```
+
 </div>
 
+<!-- PAGE 2 -->
+
 <div class="container hidden" id="page2">
-    <h1> Advance Happy Birthday, Jannu🎂</h1>
+    <h1>Advance Happy Birthday 🎂</h1>
     <div id="message" class="typing"></div>
-
-```
-<div class="countdown" id="countdown"></div>
-```
-
+    <div class="countdown" id="countdown"></div>
 </div>
 
 <script>
 
-// PAGE SWITCH
+// Switch page
 function nextPage() {
     document.getElementById("page1").style.display = "none";
     document.getElementById("page2").style.display = "block";
     startTyping();
 }
 
-// TYPING EFFECT
-const text = `I didn’t know how to say everything properly that day...
+// Typing message
+const text = `I know it’s a little early…
 
-But meeting you… it changed something in me.
+but I didn’t want to be just another wish at midnight.
 
-I was nervous, I couldn’t talk much…
-but honestly, it was because you mattered more than I expected.
+I just wanted to be someone who thought of you before that.
 
-Even yesterday… I kept waiting for your message.
+Meeting you might have been simple…
 
-Not because I was upset…
-but because I had started missing your presence already.
+but it stayed with me.
 
-We may not have a lot of memories yet…
+And somehow…
+you became someone I genuinely care about.
 
-but whatever little time I spent with you,
-it genuinely means a lot to me.
+I don’t know where this will go…
 
-I just want to see you smile… always ❤️`;
+but I’m really glad it started with you.
+
+Advance Happy Birthday 💙`;
 
 let i = 0;
+
 function startTyping() {
     const speed = 40;
     function type() {
@@ -160,7 +222,7 @@ function startTyping() {
     type();
 }
 
-// COUNTDOWN
+// Countdown
 const birthday = new Date("April 21, 2026 00:00:00").getTime();
 
 setInterval(function() {
@@ -173,7 +235,7 @@ setInterval(function() {
     const seconds = Math.floor((distance % (1000*60)) / 1000);
 
     document.getElementById("countdown").innerHTML =
-        "Countdown: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+        "⏳ " + days + "d " + hours + "h " + minutes + "m " + seconds + "s left";
 
 }, 1000);
 
