@@ -42,7 +42,6 @@ h1 {
     font-size: 2em;
     opacity: 0;
     animation: fadeInName 2s ease forwards;
-    margin-bottom: 10px;
 }
 
 @keyframes fadeInName {
@@ -101,33 +100,6 @@ button {
     font-weight: bold;
 }
 
-/* Gallery */
-.gallery {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.gallery img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 15px;
-    margin: 10px;
-    animation: zoomIn 2s ease;
-    transition: 0.4s;
-}
-
-.gallery img:hover {
-    transform: scale(1.2);
-}
-
-@keyframes zoomIn {
-    from { transform: scale(0.5); opacity: 0;}
-    to { transform: scale(1); opacity: 1;}
-}
-
 /* Confetti */
 .confetti {
     position: fixed;
@@ -142,7 +114,7 @@ button {
     100% { transform: translate(var(--x), var(--y)) rotate(720deg); opacity: 0;}
 }
 
-/* Particles */
+/* Floating particles */
 .particle {
     position: fixed;
     bottom: -10px;
@@ -158,6 +130,57 @@ button {
     to { transform: translateY(-120vh);}
 }
 
+/* Collage layout */
+.collage {
+    position: relative;
+    height: 500px;
+    margin-top: 40px;
+}
+
+/* Top Right */
+.img1 {
+    position: absolute;
+    top: 0;
+    right: 10%;
+    width: 150px;
+    border-radius: 15px;
+    transform: rotate(5deg);
+    animation: fadeIn 2s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Left Middle */
+.img2 {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    width: 150px;
+    border-radius: 15px;
+    transform: rotate(-5deg);
+    animation: fadeIn 2.5s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Bottom Right */
+.img3 {
+    position: absolute;
+    bottom: 0;
+    right: 15%;
+    width: 150px;
+    border-radius: 15px;
+    transform: rotate(3deg);
+    animation: fadeIn 3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.collage img {
+    transition: 0.4s;
+}
+
+.collage img:hover {
+    transform: scale(1.15) rotate(0deg);
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px);}
     to { opacity: 1; transform: translateY(0);}
@@ -167,8 +190,6 @@ button {
 </head>
 
 <body>
-
-<!-- Background music -->
 
 <audio id="bgMusic" src="song.mp3"></audio>
 
@@ -185,6 +206,7 @@ function burstConfetti() {
     for (let i = 0; i < 120; i++) {
         const c = document.createElement("div");
         c.className = "confetti";
+
         c.style.background = `hsl(${Math.random()*360},100%,60%)`;
         c.style.left = "50%";
         c.style.top = "50%";
@@ -228,10 +250,10 @@ So I made something small for you. </p> <button onclick="nextPage()">Open it</bu
 
 <div id="message" class="typing"></div>
 
-<div class="gallery">
-    <img src="photo1.jpeg">
-    <img src="photo2.jpeg">
-    <img src="photo3.jpeg">
+<div class="collage">
+    <img src="photo1.jpeg" class="img1">
+    <img src="photo2.jpeg" class="img2">
+    <img src="photo3.jpeg" class="img3">
 </div>
 
 <div class="countdown" id="countdown"></div>
@@ -245,10 +267,7 @@ function nextPage(){
     document.getElementById("page2").style.display="block";
 
     burstConfetti();
-
-    // play music
     document.getElementById("bgMusic").play();
-
     startTyping();
 }
 
