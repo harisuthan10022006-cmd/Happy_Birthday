@@ -6,7 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You 💙</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&display=swap" rel="stylesheet">
+<!-- Fonts -->
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -37,15 +39,23 @@ h1 {
     to { text-shadow: 0 0 25px rgba(255,255,255,0.9);}
 }
 
-/* Name */
+/* NEW PREMIUM NAME STYLE */
 .name {
-    font-size: 2em;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    color: #e0f7ff;
     opacity: 0;
-    animation: fadeInName 2s ease forwards;
+    animation: fadeInName 2s ease forwards, glowName 2s infinite alternate;
+    margin-bottom: 10px;
 }
 
 @keyframes fadeInName {
     to { opacity: 1; }
+}
+
+@keyframes glowName {
+    from { text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+    to { text-shadow: 0 0 20px rgba(255,255,255,0.9); }
 }
 
 /* Letter */
@@ -130,7 +140,7 @@ button {
     to { transform: translateY(-120vh);}
 }
 
-/* SIDE LAYOUT */
+/* Layout */
 .content-wrapper {
     display: flex;
     justify-content: center;
@@ -139,12 +149,10 @@ button {
     margin-top: 40px;
 }
 
-/* Center text */
 .center {
     max-width: 400px;
 }
 
-/* Side images */
 .side {
     display: flex;
     flex-direction: column;
