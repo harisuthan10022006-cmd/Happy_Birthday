@@ -5,50 +5,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You ❤️</title>
+
 <style>
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     color: white;
     text-align: center;
+    overflow-x: hidden;
 }
 
 .container {
-padding: 50px 20px;
+    padding: 50px 20px;
 }
 
 h1 {
-font-size: 3em;
-animation: fadeIn 2s ease-in-out;
+    font-size: 3em;
+    animation: fadeIn 2s ease-in-out;
 }
 
-p {
-font-size: 1.2em;
-max-width: 600px;
-margin: auto;
-animation: fadeIn 3s ease-in-out;
+.typing {
+    font-size: 1.3em;
+    max-width: 600px;
+    margin: auto;
+    border-right: 2px solid white;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 button {
-margin-top: 30px;
-padding: 12px 25px;
-border: none;
-border-radius: 25px;
-background: white;
-color: #ff6f91;
-font-size: 16px;
-cursor: pointer;
+    margin-top: 30px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #ff6f91;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
 }
 
 .hidden {
-display: none;
+    display: none;
 }
 
 @keyframes fadeIn {
-from { opacity: 0; }
-to { opacity: 1; }
-} </style>
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+.countdown {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+</style>
 
 </head>
 
@@ -56,25 +71,79 @@ to { opacity: 1; }
 
 <div class="container" id="page1">
     <h1>Hey You 💫</h1>
-    <p>I made something special… just for you.</p>
+    <p>I made something… just for you.</p>
     <button onclick="nextPage()">Click here ❤️</button>
 </div>
 
 <div class="container hidden" id="page2">
     <h1>Happy Birthday 🎂</h1>
-    <p>
-        I don’t know how to say everything perfectly…<br><br>
-        But meeting you made something change in me.<br>
-        You’ve become someone I genuinely care about.<br><br>
-        I just want to see you smile… always 💖
-    </p>
+    <div id="message" class="typing"></div>
+
+```
+<div class="countdown" id="countdown"></div>
+```
+
 </div>
 
 <script>
+
+// PAGE SWITCH
 function nextPage() {
     document.getElementById("page1").style.display = "none";
     document.getElementById("page2").style.display = "block";
+    startTyping();
 }
+
+// TYPING EFFECT
+const text = `I didn’t know how to say everything properly that day...
+
+But meeting you… it changed something in me.
+
+I was nervous, I couldn’t talk much…
+but honestly, it was because you mattered more than I expected.
+
+Even yesterday… I kept waiting for your message.
+
+Not because I was upset…
+but because I had started missing your presence already.
+
+We may not have a lot of memories yet…
+
+but whatever little time I spent with you,
+it genuinely means a lot to me.
+
+I just want to see you smile… always ❤️`;
+
+let i = 0;
+function startTyping() {
+    const speed = 40;
+    function type() {
+        if (i < text.length) {
+            document.getElementById("message").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+// COUNTDOWN
+const birthday = new Date("April 21, 2026 00:00:00").getTime();
+
+setInterval(function() {
+    const now = new Date().getTime();
+    const distance = birthday - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        "Countdown: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+}, 1000);
+
 </script>
 
 </body>
