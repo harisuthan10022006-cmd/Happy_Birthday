@@ -27,27 +27,46 @@ body {
     align-items: center;
 }
 
+/* Glass card */
 .lock-box {
-    background: rgba(255,255,255,0.2);
-    padding: 30px;
-    border-radius: 15px;
-}
-
-input {
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    margin-top: 10px;
-}
-
-button {
-    padding: 10px 20px;
+    background: rgba(255,255,255,0.15);
+    padding: 40px;
     border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 1.5s ease;
+}
+
+/* Title */
+.lock-box h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+}
+
+/* Input */
+.lock-box input {
+    width: 80%;
+    padding: 12px;
+    border-radius: 12px;
     border: none;
-    margin-top: 10px;
+    margin-top: 15px;
+}
+
+/* Button */
+.lock-box button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
     background: white;
     color: #4facfe;
     cursor: pointer;
+}
+
+/* Error */
+#errorMsg {
+    margin-top: 10px;
+    color: #ffe0e0;
 }
 
 /* GOLD TEXT */
@@ -69,20 +88,13 @@ button {
     display: flex;
     overflow-x: auto;
     gap: 15px;
+    margin-top: 20px;
 }
 
 .carousel img {
     width: 200px;
     border-radius: 15px;
 }
-
-/* Hidden */
-.hidden { display: none; }
-
-#errorMsg { color: red; }
-
-/* Blur */
-.blur { filter: blur(5px); }
 
 /* Viewer */
 #viewer {
@@ -98,22 +110,39 @@ button {
 #viewer img {
     max-width: 90%;
 }
+
+/* Hidden */
+.hidden { display: none; }
+
+.blur { filter: blur(5px); }
+
+/* Fade */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
 </style>
 
 </head>
 
 <body>
 
-<!-- LOCK -->
+<!-- LOCK SCREEN -->
 
 <div id="lockScreen">
     <div class="lock-box">
-        <h2>🔐 Enter Password</h2>
-        <input type="password" id="passwordInput">
-        <br>
-        <button onclick="checkPassword()">Unlock 💙</button>
-        <p id="errorMsg"></p>
-    </div>
+        <h2>🔐 Just for You</h2>
+        <p>Enter the password to unlock something special 💙</p>
+
+```
+    <input type="password" id="passwordInput" placeholder="Type here...">
+    <br>
+    <button onclick="checkPassword()">Unlock</button>
+
+    <p id="errorMsg"></p>
+</div>
+```
+
 </div>
 
 <!-- MAIN -->
@@ -149,19 +178,18 @@ button {
 
 <script>
 
-/* FUNNY PASSWORD RESPONSES */
+/* FUNNY RESPONSES */
 const funnyMessages = [
 "Wrong da 😅 try again",
 "Close ah vandhachu… but not correct 😏",
 "Hint venuma? 😄",
 "Idhu illa… think again 👀",
-"Seri seri concentrate 😌",
-"Athu illa pa 😂",
-"Almost… but no 😏"
+"Seri concentrate 😌",
+"Athu illa pa 😂"
 ];
 
 function checkPassword(){
-    const correctPassword = "april";
+    const correctPassword = "21april";
 
     const input = document.getElementById("passwordInput").value;
 
@@ -174,7 +202,7 @@ function checkPassword(){
     }
 }
 
-/* NEXT PAGE */
+/* PAGE SWITCH */
 function nextPage(){
     document.getElementById("page1").classList.add("hidden");
     document.getElementById("page2").classList.remove("hidden");
