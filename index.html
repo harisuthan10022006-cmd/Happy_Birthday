@@ -37,6 +37,18 @@ h1 {
     to { text-shadow: 0 0 25px rgba(255,255,255,0.9);}
 }
 
+/* Name reveal */
+.name {
+    font-size: 2em;
+    opacity: 0;
+    animation: fadeInName 2s ease forwards;
+    margin-bottom: 10px;
+}
+
+@keyframes fadeInName {
+    to { opacity: 1; }
+}
+
 /* Letter */
 .letter {
     background: rgba(255,255,255,0.15);
@@ -89,15 +101,6 @@ button {
     font-weight: bold;
 }
 
-/* Ribbons */
-.ribbon {
-    position: absolute;
-    top: 0;
-    width: 6px;
-    height: 80px;
-    background: white;
-}
-
 /* Gallery */
 .gallery {
     display: flex;
@@ -112,14 +115,20 @@ button {
     object-fit: cover;
     border-radius: 15px;
     margin: 10px;
+    animation: zoomIn 2s ease;
     transition: 0.4s;
 }
 
 .gallery img:hover {
-    transform: scale(1.15);
+    transform: scale(1.2);
 }
 
-/* Confetti (REAL burst) */
+@keyframes zoomIn {
+    from { transform: scale(0.5); opacity: 0;}
+    to { transform: scale(1); opacity: 1;}
+}
+
+/* Confetti */
 .confetti {
     position: fixed;
     width: 10px;
@@ -129,17 +138,11 @@ button {
 }
 
 @keyframes explode {
-    0% {
-        transform: translate(0,0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(var(--x), var(--y)) rotate(720deg);
-        opacity: 0;
-    }
+    0% { transform: translate(0,0) rotate(0deg); opacity: 1;}
+    100% { transform: translate(var(--x), var(--y)) rotate(720deg); opacity: 0;}
 }
 
-/* Floating particles */
+/* Particles */
 .particle {
     position: fixed;
     bottom: -10px;
@@ -165,7 +168,9 @@ button {
 
 <body>
 
-<!-- Floating particles -->
+<!-- Background music -->
+
+<audio id="bgMusic" src="song.mp3"></audio>
 
 <script>
 setInterval(() => {
@@ -173,19 +178,14 @@ setInterval(() => {
     p.className = "particle";
     p.style.left = Math.random() * 100 + "vw";
     document.body.appendChild(p);
-
     setTimeout(() => p.remove(), 10000);
 }, 300);
 
-/* REAL confetti burst */
 function burstConfetti() {
     for (let i = 0; i < 120; i++) {
-
         const c = document.createElement("div");
         c.className = "confetti";
-
-        c.style.background = `hsl(${Math.random()*360}, 100%, 60%)`;
-
+        c.style.background = `hsl(${Math.random()*360},100%,60%)`;
         c.style.left = "50%";
         c.style.top = "50%";
 
@@ -196,7 +196,6 @@ function burstConfetti() {
         c.style.setProperty('--y', y);
 
         document.body.appendChild(c);
-
         setTimeout(() => c.remove(), 1000);
     }
 }
@@ -222,13 +221,11 @@ So I made something small for you. </p> <button onclick="nextPage()">Open it</bu
 <!-- PAGE 2 -->
 
 <div class="container hidden" id="page2">
-    <div style="position:relative;">
-        <div class="ribbon" style="left:40%"></div>
-        <div class="ribbon" style="left:60%"></div>
-        <h1>Advance Happy Birthday</h1>
-    </div>
+    <div class="name">For Someone Special 💙</div>
 
 ```
+<h1>Advance Happy Birthday</h1>
+
 <div id="message" class="typing"></div>
 
 <div class="gallery">
@@ -247,7 +244,11 @@ function nextPage(){
     document.getElementById("page1").style.display="none";
     document.getElementById("page2").style.display="block";
 
-    burstConfetti(); // 💥 REAL POP EFFECT
+    burstConfetti();
+
+    // play music
+    document.getElementById("bgMusic").play();
+
     startTyping();
 }
 
