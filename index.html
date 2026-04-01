@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    color: white;
+    text-align: center;
+}
+
+.container {
+padding: 50px 20px;
+}
+
+h1 {
+font-size: 3em;
+animation: fadeIn 2s ease-in-out;
+}
+
+p {
+font-size: 1.2em;
+max-width: 600px;
+margin: auto;
+animation: fadeIn 3s ease-in-out;
+}
+
+button {
+margin-top: 30px;
+padding: 12px 25px;
+border: none;
+border-radius: 25px;
+background: white;
+color: #ff6f91;
+font-size: 16px;
+cursor: pointer;
+}
+
+.hidden {
+display: none;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+} </style>
+
+</head>
+
+<body>
+
+<div class="container" id="page1">
+    <h1>Hey You 💫</h1>
+    <p>I made something special… just for you.</p>
+    <button onclick="nextPage()">Click here ❤️</button>
+</div>
+
+<div class="container hidden" id="page2">
+    <h1>Happy Birthday 🎂</h1>
+    <p>
+        I don’t know how to say everything perfectly…<br><br>
+        But meeting you made something change in me.<br>
+        You’ve become someone I genuinely care about.<br><br>
+        I just want to see you smile… always 💖
+    </p>
+</div>
+
+<script>
+function nextPage() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+}
+</script>
+
+</body>
+</html>
