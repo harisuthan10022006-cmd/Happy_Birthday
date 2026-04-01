@@ -6,8 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You 💙</title>
 
-<!-- Fonts -->
-
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&display=swap" rel="stylesheet">
 
 <style>
@@ -19,10 +17,9 @@ body {
     text-align: center;
     overflow-x: hidden;
     overflow-y: auto;
-    scroll-behavior: smooth;
 }
 
-/* Floating bubbles */
+/* Bubbles */
 .bubble {
     position: fixed;
     bottom: -20px;
@@ -32,68 +29,86 @@ body {
 }
 
 @keyframes floatUp {
-    0% { transform: translateY(0); opacity: 0.7;}
-    100% { transform: translateY(-100vh); opacity: 0;}
+    from { transform: translateY(0); opacity: 0.7;}
+    to { transform: translateY(-100vh); opacity: 0;}
 }
 
+/* Balloons */
+.balloon {
+    position: fixed;
+    bottom: -50px;
+    animation: rise 6s linear infinite;
+}
+
+@keyframes rise {
+    from { transform: translateY(0);}
+    to { transform: translateY(-120vh);}
+}
+
+/* Poppers */
+.popper {
+    position: fixed;
+    animation: fadeOut 3s ease;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1;}
+    to { opacity: 0;}
+}
+
+/* Container */
 .container {
     padding: 60px 20px;
     animation: fadeIn 1.5s ease;
 }
 
+/* Glow heading */
 h1 {
     font-family: 'Dancing Script', cursive;
     font-size: 3em;
-    animation: glow 2s ease-in-out infinite alternate;
+    animation: glow 2s infinite alternate;
 }
 
-/* Glow */
 @keyframes glow {
-    from { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
-    to { text-shadow: 0 0 25px rgba(255,255,255,0.9); }
+    from { text-shadow: 0 0 10px rgba(255,255,255,0.5);}
+    to { text-shadow: 0 0 25px rgba(255,255,255,0.9);}
 }
 
-/* Letter box */
+/* Letter */
 .letter {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255,255,255,0.15);
     padding: 30px;
     border-radius: 15px;
     max-width: 500px;
     margin: auto;
     backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .letter h2 {
     font-family: 'Dancing Script', cursive;
-    font-size: 2em;
 }
 
 .letter-text {
-    font-size: 1.1em;
-    line-height: 1.8;
     white-space: pre-line;
+    line-height: 1.8;
 }
 
 /* Typing */
 .typing {
-    font-size: 1.3em;
-    max-width: 650px;
-    margin: auto;
     border-right: 2px solid white;
     white-space: pre-line;
-    overflow: hidden;
+    max-width: 650px;
+    margin: auto;
 }
 
 /* Button */
 button {
-    margin-top: 25px;
-    padding: 12px 28px;
+    margin-top: 20px;
+    padding: 12px 25px;
     border: none;
-    border-radius: 30px;
+    border-radius: 25px;
     background: white;
     color: #4facfe;
-    font-size: 16px;
     cursor: pointer;
     animation: pulse 2s infinite;
 }
@@ -104,19 +119,34 @@ button {
     100% { transform: scale(1);}
 }
 
-.hidden {
-    display: none;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px);}
-    to { opacity: 1; transform: translateY(0);}
-}
+.hidden { display: none; }
 
 .countdown {
-    font-size: 1.5em;
-    margin-top: 25px;
+    margin-top: 20px;
     font-weight: bold;
+}
+
+/* Ribbons */
+.ribbon {
+    position: absolute;
+    top: 0;
+    width: 6px;
+    height: 80px;
+    background: white;
+}
+
+/* Gallery */
+.gallery img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
 }
 </style>
 
@@ -124,121 +154,128 @@ button {
 
 <body>
 
-<!-- Floating bubbles -->
+<!-- Animations -->
 
 <script>
-setInterval(() => {
-    const bubble = document.createElement("div");
-    bubble.className = "bubble";
-    const size = Math.random() * 20 + 10;
-    bubble.style.width = size + "px";
-    bubble.style.height = size + "px";
-    bubble.style.left = Math.random() * 100 + "vw";
+setInterval(()=>{
+ let b=document.createElement("div");
+ b.className="bubble";
+ let s=Math.random()*20+10;
+ b.style.width=s+"px";
+ b.style.height=s+"px";
+ b.style.left=Math.random()*100+"vw";
+ document.body.appendChild(b);
+ setTimeout(()=>b.remove(),8000);
+},500);
 
-    document.body.appendChild(bubble);
+setInterval(()=>{
+ let b=document.createElement("div");
+ b.className="balloon";
+ b.innerHTML="🎈";
+ b.style.left=Math.random()*100+"vw";
+ document.body.appendChild(b);
+ setTimeout(()=>b.remove(),6000);
+},800);
 
-    setTimeout(() => bubble.remove(), 8000);
-}, 500);
+setInterval(()=>{
+ let p=document.createElement("div");
+ p.className="popper";
+ p.innerHTML="🎊";
+ p.style.left=Math.random()*100+"vw";
+ p.style.top=Math.random()*50+"vh";
+ document.body.appendChild(p);
+ setTimeout(()=>p.remove(),3000);
+},1500);
 </script>
 
-<!-- PAGE 1 (LETTER) -->
+<!-- PAGE 1 -->
 
 <div class="container" id="page1">
     <div class="letter">
         <h2>To You 💙</h2>
+        <p class="letter-text">
+I didn’t plan this…
 
-```
-    <p class="letter-text">
-```
+But after meeting you, something stayed with me.
 
-I didn’t plan this… honestly.
+I couldn’t talk much that day…
+but it actually meant a lot.
 
-But after meeting you, something stayed in my mind.
-
-I wasn’t able to talk much that day…
-maybe because I didn’t want to mess things up.
-
-Still… that little time meant more than I expected.
-
-So I made something small.
-
-Not perfect… but real. </p>
-
-```
-    <button onclick="nextPage()">Open it 💫</button>
-</div>
-```
+So I made something small for you. </p> <button onclick="nextPage()">Open it 💫</button> </div>
 
 </div>
 
 <!-- PAGE 2 -->
 
 <div class="container hidden" id="page2">
-    <h1>Advance Happy Birthday 🎂</h1>
-    <div id="message" class="typing"></div>
-    <div class="countdown" id="countdown"></div>
+    <div style="position:relative;">
+        <div class="ribbon" style="left:40%"></div>
+        <div class="ribbon" style="left:60%"></div>
+        <h1>🎉 Advance Happy Birthday 🎂🎈</h1>
+    </div>
+
+```
+<div id="message" class="typing"></div>
+
+<div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+</div>
+
+<div class="countdown" id="countdown"></div>
+```
+
 </div>
 
 <script>
-
-// Switch page
-function nextPage() {
-    document.getElementById("page1").style.display = "none";
-    document.getElementById("page2").style.display = "block";
-    startTyping();
+function nextPage(){
+ document.getElementById("page1").style.display="none";
+ document.getElementById("page2").style.display="block";
+ startTyping();
 }
 
-// Typing message
-const text = `I know it’s a little early…
+const text=`I know it’s a little early…
 
-but I didn’t want to be just another wish at midnight.
+but I didn’t want to be just another wish.
 
-I just wanted to be someone who thought of you before that.
+I just wanted to be someone who thought of you first.
 
-Meeting you might have been simple…
-
+Meeting you felt simple…
 but it stayed with me.
 
 And somehow…
-you became someone I genuinely care about.
+you became someone I care about.
 
-I don’t know where this will go…
-
-but I’m really glad it started with you.
+I’m really glad it started with you.
 
 Advance Happy Birthday 💙`;
 
-let i = 0;
-
-function startTyping() {
-    const speed = 40;
-    function type() {
-        if (i < text.length) {
-            document.getElementById("message").innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    type();
+let i=0;
+function startTyping(){
+ let speed=40;
+ function type(){
+  if(i<text.length){
+   document.getElementById("message").innerHTML+=text.charAt(i);
+   i++;
+   setTimeout(type,speed);
+  }
+ }
+ type();
 }
 
-// Countdown
-const birthday = new Date("April 21, 2026 00:00:00").getTime();
+const birthday=new Date("April 21, 2026 00:00:00").getTime();
+setInterval(()=>{
+ let now=new Date().getTime();
+ let d=birthday-now;
+ let days=Math.floor(d/(1000*60*60*24));
+ let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+ let m=Math.floor((d%(1000*60*60))/(1000*60));
+ let s=Math.floor((d%(1000*60))/1000);
 
-setInterval(function() {
-    const now = new Date().getTime();
-    const distance = birthday - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-    document.getElementById("countdown").innerHTML =
-        "⏳ " + days + "d " + hours + "h " + minutes + "m " + seconds + "s left";
-
-}, 1000);
-
+ document.getElementById("countdown").innerHTML=
+ "⏳ "+days+"d "+h+"h "+m+"m "+s+"s left";
+},1000);
 </script>
 
 </body>
