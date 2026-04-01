@@ -19,43 +19,6 @@ body {
     overflow-y: auto;
 }
 
-/* Bubbles */
-.bubble {
-    position: fixed;
-    bottom: -20px;
-    background: rgba(255,255,255,0.3);
-    border-radius: 50%;
-    animation: floatUp 8s linear infinite;
-}
-
-@keyframes floatUp {
-    from { transform: translateY(0); opacity: 0.7;}
-    to { transform: translateY(-100vh); opacity: 0;}
-}
-
-/* Balloons */
-.balloon {
-    position: fixed;
-    bottom: -50px;
-    animation: rise 6s linear infinite;
-}
-
-@keyframes rise {
-    from { transform: translateY(0);}
-    to { transform: translateY(-120vh);}
-}
-
-/* Poppers */
-.popper {
-    position: fixed;
-    animation: fadeOut 3s ease;
-}
-
-@keyframes fadeOut {
-    from { opacity: 1;}
-    to { opacity: 0;}
-}
-
 /* Container */
 .container {
     padding: 60px 20px;
@@ -136,17 +99,59 @@ button {
 }
 
 /* Gallery */
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
 .gallery img {
     width: 150px;
     height: 150px;
     object-fit: cover;
     border-radius: 15px;
     margin: 10px;
-    transition: 0.3s;
+    transition: 0.4s;
 }
 
 .gallery img:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    opacity: 0.9;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    from { transform: translateY(0) rotate(0deg);}
+    to { transform: translateY(100vh) rotate(360deg); opacity: 0;}
+}
+
+/* Particles */
+.particle {
+    position: fixed;
+    bottom: -10px;
+    width: 6px;
+    height: 6px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    animation: float 10s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(0);}
+    to { transform: translateY(-120vh);}
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 </style>
 
@@ -154,38 +159,30 @@ button {
 
 <body>
 
-<!-- Animations -->
+<!-- Floating particles -->
 
 <script>
-setInterval(()=>{
- let b=document.createElement("div");
- b.className="bubble";
- let s=Math.random()*20+10;
- b.style.width=s+"px";
- b.style.height=s+"px";
- b.style.left=Math.random()*100+"vw";
- document.body.appendChild(b);
- setTimeout(()=>b.remove(),8000);
-},500);
+setInterval(() => {
+    const p = document.createElement("div");
+    p.className = "particle";
+    p.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(p);
 
-setInterval(()=>{
- let b=document.createElement("div");
- b.className="balloon";
- b.innerHTML="🎈";
- b.style.left=Math.random()*100+"vw";
- document.body.appendChild(b);
- setTimeout(()=>b.remove(),6000);
-},800);
+    setTimeout(() => p.remove(), 10000);
+}, 300);
 
-setInterval(()=>{
- let p=document.createElement("div");
- p.className="popper";
- p.innerHTML="🎊";
- p.style.left=Math.random()*100+"vw";
- p.style.top=Math.random()*50+"vh";
- document.body.appendChild(p);
- setTimeout(()=>p.remove(),3000);
-},1500);
+/* Confetti burst */
+function burstConfetti() {
+    for (let i = 0; i < 80; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background = `hsl(${Math.random()*360}, 100%, 70%)`;
+        document.body.appendChild(c);
+
+        setTimeout(() => c.remove(), 3000);
+    }
+}
 </script>
 
 <!-- PAGE 1 -->
@@ -201,7 +198,7 @@ But after meeting you, something stayed with me.
 I couldn’t talk much that day…
 but it actually meant a lot.
 
-So I made something small for you. </p> <button onclick="nextPage()">Open it 💫</button> </div>
+So I made something small for you. </p> <button onclick="nextPage()">Open it</button> </div>
 
 </div>
 
@@ -211,7 +208,7 @@ So I made something small for you. </p> <button onclick="nextPage()">Open it �
     <div style="position:relative;">
         <div class="ribbon" style="left:40%"></div>
         <div class="ribbon" style="left:60%"></div>
-        <h1>🎉 Advance Happy Birthday 🎂🎈</h1>
+        <h1>Advance Happy Birthday</h1>
     </div>
 
 ```
@@ -230,9 +227,11 @@ So I made something small for you. </p> <button onclick="nextPage()">Open it �
 
 <script>
 function nextPage(){
- document.getElementById("page1").style.display="none";
- document.getElementById("page2").style.display="block";
- startTyping();
+    document.getElementById("page1").style.display="none";
+    document.getElementById("page2").style.display="block";
+
+    burstConfetti(); // animation trigger
+    startTyping();
 }
 
 const text=`I know it’s a little early…
@@ -268,6 +267,7 @@ const birthday=new Date("April 21, 2026 00:00:00").getTime();
 setInterval(()=>{
  let now=new Date().getTime();
  let d=birthday-now;
+
  let days=Math.floor(d/(1000*60*60*24));
  let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
  let m=Math.floor((d%(1000*60*60))/(1000*60));
