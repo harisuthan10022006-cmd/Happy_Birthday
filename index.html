@@ -37,7 +37,7 @@ h1 {
     to { text-shadow: 0 0 25px rgba(255,255,255,0.9);}
 }
 
-/* Name reveal */
+/* Name */
 .name {
     font-size: 2em;
     opacity: 0;
@@ -71,7 +71,7 @@ h1 {
 .typing {
     border-right: 2px solid white;
     white-space: pre-line;
-    max-width: 650px;
+    max-width: 400px;
     margin: auto;
 }
 
@@ -114,7 +114,7 @@ button {
     100% { transform: translate(var(--x), var(--y)) rotate(720deg); opacity: 0;}
 }
 
-/* Floating particles */
+/* Particles */
 .particle {
     position: fixed;
     bottom: -10px;
@@ -130,55 +130,37 @@ button {
     to { transform: translateY(-120vh);}
 }
 
-/* Collage layout */
-.collage {
-    position: relative;
-    height: 500px;
+/* SIDE LAYOUT */
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
     margin-top: 40px;
 }
 
-/* Top Right */
-.img1 {
-    position: absolute;
-    top: 0;
-    right: 10%;
-    width: 150px;
-    border-radius: 15px;
-    transform: rotate(5deg);
-    animation: fadeIn 2s ease;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+/* Center text */
+.center {
+    max-width: 400px;
 }
 
-/* Left Middle */
-.img2 {
-    position: absolute;
-    top: 40%;
-    left: 5%;
-    width: 150px;
-    border-radius: 15px;
-    transform: rotate(-5deg);
-    animation: fadeIn 2.5s ease;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+/* Side images */
+.side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* Bottom Right */
-.img3 {
-    position: absolute;
-    bottom: 0;
-    right: 15%;
+.side img {
     width: 150px;
     border-radius: 15px;
-    transform: rotate(3deg);
-    animation: fadeIn 3s ease;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-.collage img {
     transition: 0.4s;
+    animation: fadeIn 2s ease;
 }
 
-.collage img:hover {
-    transform: scale(1.15) rotate(0deg);
+.side img:hover {
+    transform: scale(1.1);
 }
 
 @keyframes fadeIn {
@@ -206,7 +188,6 @@ function burstConfetti() {
     for (let i = 0; i < 120; i++) {
         const c = document.createElement("div");
         c.className = "confetti";
-
         c.style.background = `hsl(${Math.random()*360},100%,60%)`;
         c.style.left = "50%";
         c.style.top = "50%";
@@ -243,17 +224,27 @@ So I made something small for you. </p> <button onclick="nextPage()">Open it</bu
 <!-- PAGE 2 -->
 
 <div class="container hidden" id="page2">
-    <div class="name">For Someone Special 💙</div>
 
 ```
+<div class="name">For Someone Special 💙</div>
+
 <h1>Advance Happy Birthday</h1>
 
-<div id="message" class="typing"></div>
+<div class="content-wrapper">
 
-<div class="collage">
-    <img src="photo1.jpeg" class="img1">
-    <img src="photo2.jpeg" class="img2">
-    <img src="photo3.jpeg" class="img3">
+    <div class="side">
+        <img src="photo1.jpeg">
+    </div>
+
+    <div class="center">
+        <div id="message" class="typing"></div>
+    </div>
+
+    <div class="side">
+        <img src="photo2.jpeg">
+        <img src="photo3.jpeg">
+    </div>
+
 </div>
 
 <div class="countdown" id="countdown"></div>
