@@ -6,8 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You 💙</title>
 
-<!-- Fonts -->
-
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
@@ -17,179 +15,88 @@ body {
     background: linear-gradient(135deg, #4facfe, #00f2fe);
     color: white;
     text-align: center;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
-/* Container */
-.container {
-    padding: 60px 20px;
-    animation: fadeIn 1.5s ease;
-}
-
-/* Heading */
-h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3em;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 10px rgba(255,255,255,0.5);}
-    to { text-shadow: 0 0 25px rgba(255,255,255,0.9);}
-}
-
-/* GOLD GLITTER TEXT */
-.name {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.3em;
-
-    background: linear-gradient(
-        120deg,
-        #d4af37,
-        #ffd700,
-        #fff8dc,
-        #ffd700,
-        #d4af37
-    );
-    background-size: 200% auto;
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    animation: shine 3s linear infinite, fadeInName 2s ease forwards;
-    opacity: 0;
-    margin-bottom: 10px;
-
-    text-shadow: 0 0 10px rgba(255,215,0,0.5),
-                 0 0 20px rgba(255,215,0,0.4);
-}
-
-@keyframes shine {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
-}
-
-@keyframes fadeInName {
-    to { opacity: 1; }
-}
-
-/* Letter */
-.letter {
-    background: rgba(255,255,255,0.15);
-    padding: 30px;
-    border-radius: 15px;
-    max-width: 500px;
-    margin: auto;
-    backdrop-filter: blur(10px);
-}
-
-.letter h2 {
-    font-family: 'Dancing Script', cursive;
-}
-
-.letter-text {
-    white-space: pre-line;
-    line-height: 1.8;
-}
-
-/* Typing */
-.typing {
-    border-right: 2px solid white;
-    white-space: pre-line;
-    max-width: 400px;
-    margin: auto;
-}
-
-/* Button */
-button {
-    margin-top: 20px;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    background: white;
-    color: #4facfe;
-    cursor: pointer;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1);}
-    50% { transform: scale(1.08);}
-    100% { transform: scale(1);}
-}
-
-.hidden { display: none; }
-
-.countdown {
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-/* Confetti */
-.confetti {
+/* LOCK SCREEN */
+#lockScreen {
     position: fixed;
-    width: 10px;
-    height: 10px;
-    opacity: 0.9;
-    animation: explode 1s ease-out forwards;
-}
-
-@keyframes explode {
-    0% { transform: translate(0,0) rotate(0deg); opacity: 1;}
-    100% { transform: translate(var(--x), var(--y)) rotate(720deg); opacity: 0;}
-}
-
-/* Floating particles */
-.particle {
-    position: fixed;
-    bottom: -10px;
-    width: 6px;
-    height: 6px;
-    background: rgba(255,255,255,0.4);
-    border-radius: 50%;
-    animation: float 10s linear infinite;
-}
-
-@keyframes float {
-    from { transform: translateY(0);}
-    to { transform: translateY(-120vh);}
-}
-
-/* Layout */
-.content-wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    margin-top: 40px;
 }
 
-.center {
-    max-width: 400px;
-}
-
-.side {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.side img {
-    width: 150px;
+.lock-box {
+    background: rgba(255,255,255,0.2);
+    padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    transition: 0.4s;
-    animation: fadeIn 2s ease;
 }
 
-.side img:hover {
-    transform: scale(1.1);
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px);}
-    to { opacity: 1; transform: translateY(0);}
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    margin-top: 10px;
+    background: white;
+    color: #4facfe;
+    cursor: pointer;
+}
+
+/* GOLD TEXT */
+.name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3em;
+    background: linear-gradient(120deg,#d4af37,#ffd700,#fff8dc,#ffd700,#d4af37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    100% { background-position: 200%; }
+}
+
+/* Carousel */
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+}
+
+.carousel img {
+    width: 200px;
+    border-radius: 15px;
+}
+
+/* Hidden */
+.hidden { display: none; }
+
+#errorMsg { color: red; }
+
+/* Blur */
+.blur { filter: blur(5px); }
+
+/* Viewer */
+#viewer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewer img {
+    max-width: 90%;
 }
 </style>
 
@@ -197,137 +104,107 @@ button {
 
 <body>
 
-<audio id="bgMusic" src="song.mp3"></audio>
+<!-- LOCK -->
+
+<div id="lockScreen">
+    <div class="lock-box">
+        <h2>🔐 Enter Password</h2>
+        <input type="password" id="passwordInput">
+        <br>
+        <button onclick="checkPassword()">Unlock 💙</button>
+        <p id="errorMsg"></p>
+    </div>
+</div>
+
+<!-- MAIN -->
+
+<div id="main" style="display:none;">
+
+<div id="page1">
+    <h2>To You 💙</h2>
+    <button onclick="nextPage()">Open it</button>
+</div>
+
+<div id="page2" class="hidden">
+    <div class="name">For Someone Special ✨</div>
+    <h1>Advance Happy Birthday</h1>
+
+```
+<div id="message"></div>
+
+<div class="carousel">
+    <img src="photo1.jpeg" onclick="openImage(this)">
+    <img src="photo2.jpeg" onclick="openImage(this)">
+    <img src="photo3.jpeg" onclick="openImage(this)">
+</div>
+```
+
+</div>
+
+</div>
+
+<div id="viewer" onclick="closeImage()">
+    <img id="viewerImg">
+</div>
 
 <script>
-setInterval(() => {
-    const p = document.createElement("div");
-    p.className = "particle";
-    p.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 10000);
-}, 300);
 
-function burstConfetti() {
-    for (let i = 0; i < 120; i++) {
-        const c = document.createElement("div");
-        c.className = "confetti";
-        c.style.background = `hsl(${Math.random()*360},100%,60%)`;
-        c.style.left = "50%";
-        c.style.top = "50%";
+/* FUNNY PASSWORD RESPONSES */
+const funnyMessages = [
+"Wrong da 😅 try again",
+"Close ah vandhachu… but not correct 😏",
+"Hint venuma? 😄",
+"Idhu illa… think again 👀",
+"Seri seri concentrate 😌",
+"Athu illa pa 😂",
+"Almost… but no 😏"
+];
 
-        const x = (Math.random() - 0.5) * 600 + "px";
-        const y = (Math.random() - 0.5) * 600 + "px";
+function checkPassword(){
+    const correctPassword = "21april";
 
-        c.style.setProperty('--x', x);
-        c.style.setProperty('--y', y);
+    const input = document.getElementById("passwordInput").value;
 
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 1000);
+    if(input === correctPassword){
+        document.getElementById("lockScreen").style.display="none";
+        document.getElementById("main").style.display="block";
+    } else {
+        let msg = funnyMessages[Math.floor(Math.random()*funnyMessages.length)];
+        document.getElementById("errorMsg").innerText = msg;
     }
 }
-</script>
 
-<!-- PAGE 1 -->
-
-<div class="container" id="page1">
-    <div class="letter">
-        <h2>To You 💙</h2>
-        <p class="letter-text">
-I didn’t plan this…
-
-But after meeting you, something stayed with me.
-
-I couldn’t talk much that day…
-but it actually meant a lot.
-
-So I made something small for you. </p> <button onclick="nextPage()">Open it</button> </div>
-
-</div>
-
-<!-- PAGE 2 -->
-
-<div class="container hidden" id="page2">
-
-```
-<div class="name">For Someone Special ✨</div>
-
-<h1>Advance Happy Birthday</h1>
-
-<div class="content-wrapper">
-
-    <div class="side">
-        <img src="photo1.jpeg">
-    </div>
-
-    <div class="center">
-        <div id="message" class="typing"></div>
-    </div>
-
-    <div class="side">
-        <img src="photo2.jpeg">
-        <img src="photo3.jpeg">
-    </div>
-
-</div>
-
-<div class="countdown" id="countdown"></div>
-```
-
-</div>
-
-<script>
+/* NEXT PAGE */
 function nextPage(){
-    document.getElementById("page1").style.display="none";
-    document.getElementById("page2").style.display="block";
-
-    burstConfetti();
-    document.getElementById("bgMusic").play();
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
     startTyping();
 }
 
-const text=`I know it’s a little early…
-
-but I didn’t want to be just another wish.
-
-I just wanted to be someone who thought of you first.
-
-Meeting you felt simple…
-but it stayed with me.
-
-And somehow…
-you became someone I care about.
-
-I’m really glad it started with you.
-
-Advance Happy Birthday 💙`;
+/* TYPING */
+const text="Advance Happy Birthday 💙";
 
 let i=0;
 function startTyping(){
- let speed=40;
- function type(){
-  if(i<text.length){
-   document.getElementById("message").innerHTML+=text.charAt(i);
-   i++;
-   setTimeout(type,speed);
-  }
- }
- type();
+    function type(){
+        if(i<text.length){
+            document.getElementById("message").innerHTML+=text.charAt(i);
+            i++;
+            setTimeout(type,40);
+        }
+    }
+    type();
 }
 
-const birthday=new Date("April 21, 2026 00:00:00").getTime();
-setInterval(()=>{
- let now=new Date().getTime();
- let d=birthday-now;
+/* IMAGE VIEW */
+function openImage(img){
+    document.getElementById("viewer").style.display="flex";
+    document.getElementById("viewerImg").src=img.src;
+}
 
- let days=Math.floor(d/(1000*60*60*24));
- let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
- let m=Math.floor((d%(1000*60*60))/(1000*60));
- let s=Math.floor((d%(1000*60))/1000);
-
- document.getElementById("countdown").innerHTML=
- "⏳ "+days+"d "+h+"h "+m+"m "+s+"s left";
-},1000);
+function closeImage(){
+    document.getElementById("viewer").style.display="none";
+}
 </script>
 
 </body>
