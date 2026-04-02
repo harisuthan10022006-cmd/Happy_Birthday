@@ -22,12 +22,6 @@ body {
     padding: 60px 20px;
 }
 
-/* Heading */
-h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3em;
-}
-
 /* GOLD TEXT */
 .name {
     font-family: 'Playfair Display', serif;
@@ -43,35 +37,42 @@ h1 {
     100% { background-position: 200%; }
 }
 
-/* FLOWER INTRO */
-#flowerIntro {
-    margin-bottom: 20px;
-}
-
-.flower {
-    font-size: 2.5em;
+/* Jannu reveal */
+#jannuName {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3em;
     opacity: 0;
     transform: scale(0.5);
-    animation: bloom 2s ease forwards;
+    animation: revealName 2s ease forwards;
 }
 
-@keyframes bloom {
+/* Heartbeat effect */
+.heartbeat {
+    animation: beat 1.2s infinite;
+}
+
+@keyframes beat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.15); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* Name animation */
+@keyframes revealName {
     0% {
         opacity: 0;
-        transform: scale(0.3) rotate(-30deg);
+        transform: scale(0.3) translateY(20px);
     }
     50% {
         opacity: 1;
-        transform: scale(1.4) rotate(10deg);
+        transform: scale(1.2);
     }
     100% {
         transform: scale(1);
+        opacity: 1;
     }
-}
-
-/* Hide initially */
-.hidden {
-    display: none;
 }
 
 /* Layout */
@@ -127,6 +128,11 @@ button {
         opacity: 0;
     }
 }
+
+/* Hidden */
+.hidden {
+    display: none;
+}
 </style>
 
 </head>
@@ -163,9 +169,9 @@ function burstConfetti(){
 <div class="container hidden" id="page2">
 
 ```
-<!-- FLOWER INTRO -->
-<div id="flowerIntro">
-    <div class="flower">🌸</div>
+<!-- NAME REVEAL -->
+<div id="nameReveal">
+    <div id="jannuName">Jannu 💙</div>
     <div class="name hidden" id="finalName">For Someone Special ✨</div>
 </div>
 
@@ -197,16 +203,22 @@ function nextPage(){
     burstConfetti();
     document.getElementById("bgMusic").play();
 
-    showFlowerIntro();
+    showNameReveal();
     startTyping();
 }
 
-/* FLOWER → TEXT */
-function showFlowerIntro(){
-    setTimeout(()=>{
-        document.querySelector(".flower").style.display="none";
+/* NAME REVEAL + HEARTBEAT */
+function showNameReveal(){
+    let name = document.getElementById("jannuName");
+
+    setTimeout(() => {
+        name.classList.add("heartbeat");
+    }, 500);
+
+    setTimeout(() => {
+        name.style.display = "none";
         document.getElementById("finalName").classList.remove("hidden");
-    },2000);
+    }, 3000);
 }
 
 /* Typing */
@@ -216,8 +228,13 @@ but I didn’t want to be just another wish.
 
 I just wanted to be someone who thought of you first.
 
+Meeting you felt simple…
+but it stayed with me.
+
 And somehow…
 you became someone I care about.
+
+I’m really glad it started with you.
 
 Advance Happy Birthday 💙`;
 
