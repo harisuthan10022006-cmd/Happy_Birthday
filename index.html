@@ -17,36 +17,17 @@ body {
     text-align: center;
 }
 
-/* Container */
-.container {
-    padding: 60px 20px;
-}
-
-/* GOLD TEXT */
-.name {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.3em;
-    background: linear-gradient(120deg,#d4af37,#ffd700,#fff8dc,#ffd700,#d4af37);
-    background-size: 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 3s linear infinite;
-}
-
-@keyframes shine {
-    100% { background-position: 200%; }
-}
-
-/* Jannu reveal */
+/* Jannu Name */
 #jannuName {
     font-family: 'Dancing Script', cursive;
     font-size: 3em;
+    margin-bottom: 10px;
     opacity: 0;
     transform: scale(0.5);
     animation: revealName 2s ease forwards;
 }
 
-/* Heartbeat effect */
+/* Heartbeat */
 .heartbeat {
     animation: beat 1.2s infinite;
 }
@@ -59,7 +40,6 @@ body {
     100% { transform: scale(1); }
 }
 
-/* Name animation */
 @keyframes revealName {
     0% {
         opacity: 0;
@@ -75,7 +55,16 @@ body {
     }
 }
 
-/* Layout */
+/* KEEP YOUR EXISTING STYLES BELOW (UNCHANGED) */
+.container { padding: 60px 20px; }
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3em;
+}
+
+.hidden { display: none; }
+
 .content-wrapper {
     display: flex;
     justify-content: center;
@@ -84,9 +73,7 @@ body {
     margin-top: 40px;
 }
 
-.center {
-    max-width: 400px;
-}
+.center { max-width: 400px; }
 
 .side {
     display: flex;
@@ -97,21 +84,6 @@ body {
 .side img {
     width: 150px;
     border-radius: 15px;
-}
-
-/* Button */
-button {
-    padding: 12px 25px;
-    border-radius: 25px;
-    border: none;
-    background: white;
-    color: #4facfe;
-}
-
-/* Typing */
-.typing {
-    max-width: 400px;
-    margin: auto;
 }
 
 /* Confetti */
@@ -128,11 +100,6 @@ button {
         opacity: 0;
     }
 }
-
-/* Hidden */
-.hidden {
-    display: none;
-}
 </style>
 
 </head>
@@ -142,17 +109,22 @@ button {
 <audio id="bgMusic" src="song.mp3"></audio>
 
 <script>
-function burstConfetti(){
-    for(let i=0;i<100;i++){
-        let c=document.createElement("div");
-        c.className="confetti";
-        c.style.background=`hsl(${Math.random()*360},100%,60%)`;
-        c.style.left="50%";
-        c.style.top="50%";
-        c.style.setProperty('--x',(Math.random()-0.5)*500+'px');
-        c.style.setProperty('--y',(Math.random()-0.5)*500+'px');
+function burstConfetti() {
+    for (let i = 0; i < 120; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.background = `hsl(${Math.random()*360},100%,60%)`;
+        c.style.left = "50%";
+        c.style.top = "50%";
+
+        const x = (Math.random() - 0.5) * 600 + "px";
+        const y = (Math.random() - 0.5) * 600 + "px";
+
+        c.style.setProperty('--x', x);
+        c.style.setProperty('--y', y);
+
         document.body.appendChild(c);
-        setTimeout(()=>c.remove(),1000);
+        setTimeout(() => c.remove(), 1000);
     }
 }
 </script>
@@ -160,8 +132,18 @@ function burstConfetti(){
 <!-- PAGE 1 -->
 
 <div class="container" id="page1">
-    <h2>To You 💙</h2>
-    <button onclick="nextPage()">Open it</button>
+    <div class="letter">
+        <h2>To You 💙</h2>
+        <p class="letter-text">
+I didn’t plan this…
+
+But after meeting you, something stayed with me.
+
+I couldn’t talk much that day…
+but it actually meant a lot.
+
+So I made something small for you. </p> <button onclick="nextPage()">Open it</button> </div>
+
 </div>
 
 <!-- PAGE 2 -->
@@ -169,15 +151,13 @@ function burstConfetti(){
 <div class="container hidden" id="page2">
 
 ```
-<!-- NAME REVEAL -->
-<div id="nameReveal">
-    <div id="jannuName">Jannu 💙</div>
-    <div class="name hidden" id="finalName">For Someone Special ✨</div>
-</div>
+<!-- ONLY JANNU -->
+<div id="jannuName">Jannu 💙</div>
 
 <h1>Advance Happy Birthday</h1>
 
 <div class="content-wrapper">
+
     <div class="side">
         <img src="photo1.jpeg">
     </div>
@@ -190,7 +170,10 @@ function burstConfetti(){
         <img src="photo2.jpeg">
         <img src="photo3.jpeg">
     </div>
+
 </div>
+
+<div class="countdown" id="countdown"></div>
 ```
 
 </div>
@@ -203,22 +186,17 @@ function nextPage(){
     burstConfetti();
     document.getElementById("bgMusic").play();
 
-    showNameReveal();
+    startHeartbeat(); // 💓
     startTyping();
 }
 
-/* NAME REVEAL + HEARTBEAT */
-function showNameReveal(){
+/* HEARTBEAT */
+function startHeartbeat(){
     let name = document.getElementById("jannuName");
 
-    setTimeout(() => {
+    setTimeout(()=>{
         name.classList.add("heartbeat");
-    }, 500);
-
-    setTimeout(() => {
-        name.style.display = "none";
-        document.getElementById("finalName").classList.remove("hidden");
-    }, 3000);
+    },500);
 }
 
 /* Typing */
@@ -240,15 +218,30 @@ Advance Happy Birthday 💙`;
 
 let i=0;
 function startTyping(){
-    function type(){
-        if(i<text.length){
-            document.getElementById("message").innerHTML+=text.charAt(i);
-            i++;
-            setTimeout(type,40);
-        }
-    }
-    type();
+ let speed=40;
+ function type(){
+  if(i<text.length){
+   document.getElementById("message").innerHTML+=text.charAt(i);
+   i++;
+   setTimeout(type,speed);
+  }
+ }
+ type();
 }
+
+const birthday=new Date("April 21, 2026 00:00:00").getTime();
+setInterval(()=>{
+ let now=new Date().getTime();
+ let d=birthday-now;
+
+ let days=Math.floor(d/(1000*60*60*24));
+ let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+ let m=Math.floor((d%(1000*60*60))/(1000*60));
+ let s=Math.floor((d%(1000*60))/1000);
+
+ document.getElementById("countdown").innerHTML=
+ "⏳ "+days+"d "+h+"h "+m+"m "+s+"s left";
+},1000);
 </script>
 
 </body>
