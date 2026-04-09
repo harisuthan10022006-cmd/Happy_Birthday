@@ -157,42 +157,6 @@ button {
     from { transform: translateY(0);}
     to { transform: translateY(-120vh);}
 }
-
-/* Layout */
-.content-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.center {
-    max-width: 400px;
-}
-
-.side {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.side img {
-    width: 150px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    transition: 0.4s;
-    animation: fadeIn 2s ease;
-}
-
-.side img:hover {
-    transform: scale(1.1);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px);}
-    to { opacity: 1; transform: translateY(0);}
-}
 </style>
 
 </head>
@@ -236,14 +200,13 @@ function burstConfetti() {
     <div class="letter">
         <h2>To You 💙</h2>
         <p class="letter-text">
-            Eppudi ma irruka…? 😌💙  
+Eppudi ma irruka…? 😌💙  
 
-Daily ketkura kelvi dhaan…😅 
+Daily ketkura kelvi dhaan…😅
 
-Appuram ithu etho ennala mudinja oru chinna surprise 🎁✨  
+Appuram ithu etho ennala mudinja oru chinna surprise 🎁✨
 
-Open panni paaru… konjam pidikum nu nenaikuren 👀💙
- </p> <button onclick="nextPage()">Open it</button> </div>
+Open panni paaru… konjam pidikum nu nenaikuren 👀💙 </p> <button onclick="nextPage()">Open it</button> </div>
 
 </div>
 
@@ -251,31 +214,13 @@ Open panni paaru… konjam pidikum nu nenaikuren 👀💙
 
 <div class="container hidden" id="page2">
 
-```
-<!-- JANNU ONLY -->
 <div id="jannuName">Jannu 💙</div>
 
 <h1>Advance Happy Birthday</h1>
 
-<div class="content-wrapper">
-
-    <div class="side">
-        <img src="photo1.jpeg">
-    </div>
-
-    <div class="center">
-        <div id="message" class="typing"></div>
-    </div>
-
-    <div class="side">
-        <img src="photo2.jpeg">
-        <img src="photo3.jpeg">
-    </div>
-
-</div>
+<div id="message" class="typing"></div>
 
 <div class="countdown" id="countdown"></div>
-```
 
 </div>
 
@@ -291,7 +236,6 @@ function nextPage(){
     startTyping();
 }
 
-/* HEARTBEAT */
 function startHeartbeat(){
     let name = document.getElementById("jannuName");
 
@@ -300,7 +244,6 @@ function startHeartbeat(){
     },500);
 }
 
-/* Typing */
 const text=`Enna panni vachu irrukanu thane nenaikura 😅
 Onnum illa…
 
