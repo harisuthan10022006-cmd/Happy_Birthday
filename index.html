@@ -37,7 +37,7 @@ h1 {
     to { text-shadow: 0 0 25px rgba(255,255,255,0.9);}
 }
 
-/* JANNU NAME */
+/* JANNU */
 #jannuName {
     font-family: 'Dancing Script', cursive;
     font-size: 3em;
@@ -47,7 +47,6 @@ h1 {
     animation: revealName 2s ease forwards;
 }
 
-/* HEARTBEAT */
 .heartbeat {
     animation: beat 1.2s infinite;
 }
@@ -60,20 +59,10 @@ h1 {
     100% { transform: scale(1); }
 }
 
-/* REVEAL */
 @keyframes revealName {
-    0% {
-        opacity: 0;
-        transform: scale(0.3) translateY(20px);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.2);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+    0% { opacity: 0; transform: scale(0.3) translateY(20px); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
 /* Letter */
@@ -86,10 +75,6 @@ h1 {
     backdrop-filter: blur(10px);
 }
 
-.letter h2 {
-    font-family: 'Dancing Script', cursive;
-}
-
 .letter-text {
     white-space: pre-line;
     line-height: 1.8;
@@ -97,28 +82,33 @@ h1 {
 
 /* Typing */
 .typing {
-    border-right: 2px solid white;
     white-space: pre-line;
-    max-width: 400px;
+    max-width: 500px;
     margin: auto;
 }
 
 /* Button */
 button {
     margin-top: 20px;
-    padding: 12px 25px;
+    padding: 14px 30px;
+    border-radius: 30px;
     border: none;
-    border-radius: 25px;
-    background: white;
+    background: linear-gradient(135deg,#ffffff,#e6f0ff);
     color: #4facfe;
+    font-weight: bold;
     cursor: pointer;
-    animation: pulse 2s infinite;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
-@keyframes pulse {
-    0% { transform: scale(1);}
-    50% { transform: scale(1.08);}
-    100% { transform: scale(1);}
+/* Music button */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
 }
 
 .hidden { display: none; }
@@ -133,24 +123,24 @@ button {
     position: fixed;
     width: 10px;
     height: 10px;
-    opacity: 0.9;
     animation: explode 1s ease-out forwards;
 }
 
 @keyframes explode {
-    0% { transform: translate(0,0) rotate(0deg); opacity: 1;}
-    100% { transform: translate(var(--x), var(--y)) rotate(720deg); opacity: 0;}
+    100% {
+        transform: translate(var(--x), var(--y)) rotate(720deg);
+        opacity: 0;
+    }
 }
 
-/* Floating particles */
+/* BIGGER BUBBLES */
 .particle {
     position: fixed;
-    bottom: -10px;
-    width: 6px;
-    height: 6px;
-    background: rgba(255,255,255,0.4);
+    bottom: -20px;
     border-radius: 50%;
-    animation: float 10s linear infinite;
+    background: rgba(255,255,255,0.3);
+    animation: float 12s linear infinite;
+    filter: blur(1px);
 }
 
 @keyframes float {
@@ -163,13 +153,21 @@ button {
 
 <body>
 
-<audio id="bgMusic" src="song.mp3"></audio>
+<audio id="bgMusic" src="song.mp3" loop></audio>
+
+<div class="music-btn" onclick="toggleMusic()">🎵</div>
 
 <script>
 setInterval(() => {
     const p = document.createElement("div");
     p.className = "particle";
+
+    let size = Math.random() * 20 + 10;
+    p.style.width = size + "px";
+    p.style.height = size + "px";
+
     p.style.left = Math.random() * 100 + "vw";
+
     document.body.appendChild(p);
     setTimeout(() => p.remove(), 10000);
 }, 300);
@@ -190,6 +188,15 @@ function burstConfetti() {
 
         document.body.appendChild(c);
         setTimeout(() => c.remove(), 1000);
+    }
+}
+
+function toggleMusic(){
+    let music = document.getElementById("bgMusic");
+    if(music.paused){
+        music.play();
+    } else {
+        music.pause();
     }
 }
 </script>
@@ -230,7 +237,10 @@ function nextPage(){
     document.getElementById("page2").style.display="block";
 
     burstConfetti();
-    document.getElementById("bgMusic").play();
+
+    let music = document.getElementById("bgMusic");
+    music.volume = 0.5;
+    music.play().catch(()=>{});
 
     startHeartbeat();
     startTyping();
@@ -238,10 +248,7 @@ function nextPage(){
 
 function startHeartbeat(){
     let name = document.getElementById("jannuName");
-
-    setTimeout(()=>{
-        name.classList.add("heartbeat");
-    },500);
+    setTimeout(()=> name.classList.add("heartbeat"),500);
 }
 
 const text=`Enna panni vachu irrukanu thane nenaikura 😅
