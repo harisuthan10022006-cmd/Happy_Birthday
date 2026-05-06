@@ -1,303 +1,705 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surprise for you💙</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet">
-
-<style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    color: white;
-    text-align: center;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-/* Container */
-.container {
-    padding: 60px 20px;
-    animation: fadeIn 1.5s ease;
-}
-
-/* Heading */
-h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3em;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 10px rgba(255,255,255,0.5);}
-    to { text-shadow: 0 0 25px rgba(255,255,255,0.9);}
-}
-
-/* JANNU */
-#jannuName {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3em;
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: scale(0.5);
-    animation: revealName 2s ease forwards;
-}
-
-.heartbeat {
-    animation: beat 1.2s infinite;
-}
-
-@keyframes beat {
-    0% { transform: scale(1); }
-    25% { transform: scale(1.15); }
-    50% { transform: scale(1); }
-    75% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-@keyframes revealName {
-    0% { opacity: 0; transform: scale(0.3) translateY(20px); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 1; transform: scale(1); }
-}
-
-/* Letter */
-.letter {
-    background: rgba(255,255,255,0.15);
-    padding: 30px;
-    border-radius: 15px;
-    max-width: 500px;
-    margin: auto;
-    backdrop-filter: blur(10px);
-}
-
-.letter-text {
-    white-space: pre-line;
-    line-height: 1.8;
-}
-
-/* Typing */
-.typing {
-    white-space: pre-line;
-    max-width: 500px;
-    margin: auto;
-}
-
-/* Button */
-button {
-    margin-top: 20px;
-    padding: 14px 30px;
-    border-radius: 30px;
-    border: none;
-    background: linear-gradient(135deg,#ffffff,#e6f0ff);
-    color: #4facfe;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-}
-
-/* Music button */
-.music-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: white;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.hidden { display: none; }
-
-.countdown {
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-/* Confetti */
-.confetti {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    animation: explode 1s ease-out forwards;
-}
-
-@keyframes explode {
-    100% {
-        transform: translate(var(--x), var(--y)) rotate(720deg);
-        opacity: 0;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Jannu 💙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue-deep: #0a0f2e;
+      --blue-mid: #0d1f5c;
+      --blue-glow: #1a3a8f;
+      --blue-light: #4f8ef7;
+      --blue-soft: #a8c4ff;
+      --gold: #f5c842;
+      --white: #f0f4ff;
+      --text-soft: #c8d8ff;
     }
-}
 
-/* BIGGER BUBBLES */
-.particle {
-    position: fixed;
-    bottom: -20px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    animation: float 12s linear infinite;
-    filter: blur(1px);
-}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-@keyframes float {
-    from { transform: translateY(0);}
-    to { transform: translateY(-120vh);}
-}
-</style>
+    body {
+      background: var(--blue-deep);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
+    /* ── STARS ── */
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: twinkle var(--dur, 3s) infinite ease-in-out;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.4); }
+    }
+
+    /* ── NEBULA ── */
+    .nebula {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 30%, rgba(26,58,143,0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 35% at 80% 70%, rgba(79,142,247,0.3) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 60% 20%, rgba(13,31,92,0.5) 0%, transparent 60%);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    /* ══════════════════════════════
+       SECTION 1 — INTRO
+    ══════════════════════════════ */
+    #intro {
+      text-align: center;
+      gap: 24px;
+    }
+
+    .intro-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+
+    .intro-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 8vw, 5rem);
+      line-height: 1.15;
+      background: linear-gradient(135deg, var(--white) 30%, var(--blue-soft) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0;
+      animation: fadeUp 1s 0.6s forwards;
+    }
+
+    .intro-subtitle {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--text-soft);
+      max-width: 560px;
+      line-height: 1.7;
+      font-style: italic;
+      opacity: 0;
+      animation: fadeUp 1s 0.9s forwards;
+    }
+
+    .scroll-hint {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 1s 1.5s forwards;
+      color: var(--blue-soft);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+    .scroll-arrow {
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--blue-light), transparent);
+      animation: scrollPulse 1.5s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* ══════════════════════════════
+       SECTION 2 — GAME
+    ══════════════════════════════ */
+    #game-section {
+      gap: 32px;
+    }
+
+    .game-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 5vw, 2.5rem);
+      text-align: center;
+      background: linear-gradient(135deg, var(--gold), var(--blue-soft));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .game-subtitle {
+      color: var(--text-soft);
+      text-align: center;
+      font-size: 0.95rem;
+      max-width: 420px;
+    }
+
+    /* CARD FLIP GAME */
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .game-instructions {
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.3);
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 0.9rem;
+      color: var(--blue-soft);
+      text-align: center;
+      width: 100%;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+
+    .card {
+      aspect-ratio: 1;
+      cursor: pointer;
+      perspective: 600px;
+      border-radius: 10px;
+    }
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+      border-radius: 10px;
+    }
+    .card.flipped .card-inner { transform: rotateY(180deg); }
+    .card.matched .card-inner { transform: rotateY(180deg); }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .card-back {
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-glow));
+      border: 1px solid rgba(79,142,247,0.4);
+      font-size: 1.4rem;
+    }
+    .card-front {
+      background: linear-gradient(135deg, var(--blue-glow), #1e4fa0);
+      border: 1px solid rgba(168,196,255,0.5);
+      transform: rotateY(180deg);
+    }
+    .card.matched .card-front {
+      background: linear-gradient(135deg, #1a5c2e, #2a8a44);
+      border-color: rgba(100,220,130,0.6);
+      box-shadow: 0 0 16px rgba(60,200,100,0.4);
+    }
+
+    .game-status {
+      font-size: 0.9rem;
+      color: var(--blue-soft);
+      text-align: center;
+    }
+    .game-status span { color: var(--gold); font-weight: 600; }
+
+    .btn-restart {
+      background: transparent;
+      border: 1px solid var(--blue-light);
+      color: var(--blue-light);
+      padding: 10px 28px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+    }
+    .btn-restart:hover {
+      background: var(--blue-light);
+      color: var(--blue-deep);
+    }
+
+    /* WIN BANNER */
+    .win-banner {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+      animation: popIn 0.6s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    .win-banner.show { display: flex; }
+    .win-emoji { font-size: 3.5rem; }
+    .win-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      color: var(--gold);
+    }
+    .win-sub { color: var(--text-soft); font-size: 0.9rem; }
+
+    .btn-reveal {
+      background: linear-gradient(135deg, var(--blue-light), #2563eb);
+      border: none;
+      color: white;
+      padding: 14px 36px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      box-shadow: 0 0 30px rgba(79,142,247,0.5);
+      transition: all 0.3s;
+      animation: pulseGlow 2s infinite;
+    }
+    .btn-reveal:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 50px rgba(79,142,247,0.8);
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 30px rgba(79,142,247,0.5); }
+      50% { box-shadow: 0 0 60px rgba(79,142,247,0.9); }
+    }
+
+    /* ══════════════════════════════
+       SECTION 3 — MESSAGE
+    ══════════════════════════════ */
+    #message-section {
+      display: none;
+      gap: 40px;
+    }
+    #message-section.visible { display: flex; }
+
+    .msg-header {
+      text-align: center;
+    }
+    .msg-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 12px;
+    }
+    .msg-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 6vw, 3.5rem);
+      background: linear-gradient(135deg, var(--white), var(--blue-soft));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .msg-card {
+      background: rgba(13,31,92,0.6);
+      border: 1px solid rgba(79,142,247,0.25);
+      border-radius: 20px;
+      padding: clamp(24px, 5vw, 48px);
+      max-width: 680px;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      box-shadow:
+        0 0 60px rgba(79,142,247,0.15),
+        inset 0 1px 0 rgba(168,196,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .msg-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 20%; right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-light), transparent);
+    }
+
+    .msg-body {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      line-height: 1.9;
+      color: var(--text-soft);
+    }
+    .msg-body p { margin-bottom: 1.2em; }
+    .msg-body p:last-child { margin-bottom: 0; }
+
+    .msg-highlight {
+      color: var(--white);
+      font-weight: 500;
+    }
+    .msg-gold { color: var(--gold); font-style: italic; }
+
+    .msg-signature {
+      margin-top: 32px;
+      text-align: right;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--blue-soft);
+    }
+
+    /* floating hearts */
+    .hearts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+    .heart {
+      position: absolute;
+      bottom: -30px;
+      font-size: 1.2rem;
+      animation: floatHeart var(--dur, 4s) var(--delay, 0s) infinite ease-in;
+      opacity: 0;
+    }
+    @keyframes floatHeart {
+      0% { opacity: 0; transform: translateY(0) scale(0.8); }
+      20% { opacity: 0.7; }
+      80% { opacity: 0.4; }
+      100% { opacity: 0; transform: translateY(-120px) scale(1.2) rotate(20deg); }
+    }
+
+    /* ── SHARED ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* violin note floating */
+    .note {
+      position: fixed;
+      font-size: 1.4rem;
+      pointer-events: none;
+      animation: floatNote 6s infinite ease-in-out;
+      opacity: 0;
+      z-index: 0;
+    }
+    @keyframes floatNote {
+      0% { opacity: 0; transform: translateY(0) rotate(-10deg); }
+      30% { opacity: 0.6; }
+      70% { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-80px) rotate(10deg); }
+    }
+
+    /* music toggle */
+    .music-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      background: rgba(13,31,92,0.8);
+      border: 1px solid rgba(79,142,247,0.4);
+      color: var(--blue-soft);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.3rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s;
+      box-shadow: 0 0 20px rgba(79,142,247,0.3);
+    }
+    .music-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(79,142,247,0.6); }
+
+    /* divider */
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-light), transparent);
+      margin: 0 auto;
+    }
+
+    /* responsive */
+    @media (max-width: 400px) {
+      .cards-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<audio id="bgMusic" src="song.mp3" loop></audio>
+<!-- STARS -->
+<div class="stars" id="stars"></div>
+<div class="nebula"></div>
 
-<div class="music-btn" onclick="toggleMusic()">🎵</div>
+<!-- MUSIC BUTTON -->
+<button class="music-btn" id="musicBtn" title="Toggle music">🎻</button>
+
+<!-- VIOLIN NOTES -->
+<div id="notes"></div>
+
+<!-- ══ SECTION 1: INTRO ══ -->
+<section id="intro">
+  <p class="intro-eyebrow">A little something &nbsp;✦&nbsp; just for you</p>
+  <h1 class="intro-title">Hey Jannu 💙</h1>
+  <p class="intro-subtitle">
+    "Ennaku theriyala nee ethuku innum oru webpage keetanu…<br/>
+    but this is what I created for you."
+  </p>
+  <div class="divider" style="margin-top:16px;"></div>
+  <div class="scroll-hint">
+    <span>scroll down</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ══ SECTION 2: GAME ══ -->
+<section id="game-section">
+  <h2 class="game-title">🎮 Unlock the Secret Message</h2>
+  <p class="game-subtitle">Match all the pairs to reveal what Harris has been hiding 👀💙</p>
+
+  <div class="game-container">
+    <div class="game-instructions">
+      Flip cards &amp; find matching pairs!<br/>
+      <small style="opacity:0.7;">All 8 pairs matched = secret unlocked 🔓</small>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid"></div>
+
+    <p class="game-status" id="gameStatus">Matches: <span id="matchCount">0</span> / 8</p>
+    <button class="btn-restart" id="restartBtn">🔄 Restart</button>
+
+    <!-- WIN STATE -->
+    <div class="win-banner" id="winBanner">
+      <div class="win-emoji">🎉🎻💙</div>
+      <p class="win-text">Ayyo Jannu! You did it!!</p>
+      <p class="win-sub">Now see what Harris has been wanting to say… 👇</p>
+      <button class="btn-reveal" id="revealBtn">Open the Message 💌</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 3: MESSAGE ══ -->
+<section id="message-section">
+  <div class="msg-header">
+    <p class="msg-eyebrow">✦ &nbsp; from Harris &nbsp; ✦</p>
+    <h2 class="msg-title">For You, Janani 💙</h2>
+  </div>
+
+  <div class="msg-card">
+    <div class="hearts" id="hearts"></div>
+
+    <div class="msg-body" id="msgBody">
+      <!--
+        ════════════════════════════════════
+        HEY HARRIS BRO! ✏️
+        Replace the paragraphs below with
+        your actual message to Janani.
+        Keep the <p> tags, edit the text!
+        ════════════════════════════════════
+      -->
+      <p>
+        <span class="msg-highlight">Jannu,</span> I don't even know where to start.
+        You've been my best friend for so long that somewhere along the way,
+        <span class="msg-gold">you became my favourite part of every day.</span>
+      </p>
+      <p>
+        The way you scold me, the way you care, the way you randomly text me —
+        <span class="msg-highlight">all of it means more than you know.</span>
+        You never had to ask me for a second webpage…
+        I would have made a thousand just to see you smile.
+      </p>
+      <p>
+        I'm not asking for anything. I just wanted you to know —
+        <span class="msg-gold">somewhere between all our conversations and all our laughs,
+        I think I fell a little (lot) for you. 💙</span>
+      </p>
+      <p>
+        So yeah. That's my secret. The violin in "Unakul Naane" plays exactly
+        how I feel when I'm talking to you —
+        <span class="msg-highlight">quiet, warm, and completely yours.</span>
+      </p>
+      <!-- ADD MORE PARAGRAPHS HERE IF YOU WANT -->
+    </div>
+
+    <div class="msg-signature">— Harris 🎻</div>
+  </div>
+</section>
+
+<!-- AUDIO (YouTube embed fallback) -->
+<iframe id="ytAudio"
+  src="https://www.youtube.com/embed/0Ql6P_-8kXU?autoplay=0&loop=1&playlist=0Ql6P_-8kXU&controls=0&enablejsapi=1"
+  style="display:none;" allow="autoplay" title="bgm">
+</iframe>
 
 <script>
-setInterval(() => {
-    const p = document.createElement("div");
-    p.className = "particle";
-
-    let size = Math.random() * 20 + 10;
-    p.style.width = size + "px";
-    p.style.height = size + "px";
-
-    p.style.left = Math.random() * 100 + "vw";
-
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 10000);
-}, 300);
-
-function burstConfetti() {
-    for (let i = 0; i < 120; i++) {
-        const c = document.createElement("div");
-        c.className = "confetti";
-        c.style.background = `hsl(${Math.random()*360},100%,60%)`;
-        c.style.left = "50%";
-        c.style.top = "50%";
-
-        const x = (Math.random() - 0.5) * 600 + "px";
-        const y = (Math.random() - 0.5) * 600 + "px";
-
-        c.style.setProperty('--x', x);
-        c.style.setProperty('--y', y);
-
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 1000);
-    }
-}
-
-function toggleMusic(){
-    let music = document.getElementById("bgMusic");
-    if(music.paused){
-        music.play();
-    } else {
-        music.pause();
-    }
-}
-</script>
-
-<!-- PAGE 1 -->
-
-<div class="container" id="page1">
-    <div class="letter">
-        <h2>To You 💙</h2>
-        <p class="letter-text">
-Just open it ma💙  
-            
-</p> <button onclick="nextPage()">Open it</button> </div>
-
-</div>
-
-<!-- PAGE 2 -->
-
-<div class="container hidden" id="page2">
-
-<div id="jannuName">Jannu 💙</div>
-
-<h1>Advance Happy Birthday</h1>
-
-<div id="message" class="typing"></div>
-
-<div class="countdown" id="countdown"></div>
-
-</div>
-
-<script>
-function nextPage(){
-    document.getElementById("page1").style.display="none";
-    document.getElementById("page2").style.display="block";
-
-    burstConfetti();
-
-    let music = document.getElementById("bgMusic");
-    music.volume = 0.5;
-    music.play().catch(()=>{});
-
-    startHeartbeat();
-    startTyping();
-}
-
-function startHeartbeat(){
-    let name = document.getElementById("jannuName");
-    setTimeout(()=> name.classList.add("heartbeat"),500);
-}
-
-const text=`Enna panni vachu irrukanu thane nenaikura 😅
-Onnum illa…
-
-Eppovum insta la text panni wish pannidurom…
-but intha year konjam edhavathu different ah pannaumnu thonuchu 😌
-
-Athan oru small page create panniten ✨
-
-And nowww… advance happy birthday ma 💙
-
-Unaku intha year romba nalla poganum… 😌
-Nee nenachadhu ellame nadakanum…
-
-Eppovum sirichute irrukanum, cause nee siricha alagha irrupa…😊✨
-Nee sirikalanalum unna sirika vaika naa eppovume un kooda tha irrupen😁💯
-
-And ithe maari enna motivate pannite irrukanum😅
-Naanum ennala mudinja alavuku unna motivate pannitu tha irrupen...💙
-
-Inuum neraiya sollite poghalam but birthday ku wish panna konjam content venumla,
-athanala ippothaiku avalothan😁
-
-Once again Advance Happy Birthday Jannu 💙`;
-
-let i=0;
-function startTyping(){
- let speed=40;
- function type(){
-  if(i<text.length){
-   document.getElementById("message").innerHTML+=text.charAt(i);
-   i++;
-   setTimeout(type,speed);
+  // ── STARS ──
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 140; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      width:${size}px;
+      height:${size}px;
+      --dur:${2+Math.random()*4}s;
+      animation-delay:${Math.random()*4}s;
+    `;
+    starsEl.appendChild(s);
   }
- }
- type();
-}
 
-const birthday=new Date("April 21, 2026 00:00:00").getTime();
-setInterval(()=>{
- let now=new Date().getTime();
- let d=birthday-now;
+  // ── FLOATING NOTES ──
+  const notesEl = document.getElementById('notes');
+  const noteSymbols = ['🎵','🎶','🎻','♪','♫'];
+  for (let i = 0; i < 8; i++) {
+    const n = document.createElement('div');
+    n.className = 'note';
+    n.textContent = noteSymbols[Math.floor(Math.random()*noteSymbols.length)];
+    n.style.cssText = `
+      left:${10+Math.random()*80}%;
+      top:${20+Math.random()*60}%;
+      animation-delay:${Math.random()*6}s;
+      animation-duration:${5+Math.random()*4}s;
+    `;
+    notesEl.appendChild(n);
+  }
 
- let days=Math.floor(d/(1000*60*60*24));
- let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
- let m=Math.floor((d%(1000*60*60))/(1000*60));
- let s=Math.floor((d%(1000*60))/1000);
+  // ── MUSIC TOGGLE ──
+  const musicBtn = document.getElementById('musicBtn');
+  const ytFrame = document.getElementById('ytAudio');
+  let playing = false;
+  musicBtn.addEventListener('click', () => {
+    playing = !playing;
+    musicBtn.textContent = playing ? '🔇' : '🎻';
+    ytFrame.contentWindow.postMessage(
+      JSON.stringify({ event: 'command', func: playing ? 'playVideo' : 'pauseVideo' }),
+      '*'
+    );
+  });
 
- document.getElementById("countdown").innerHTML=
- "⏳ "+days+"d "+h+"h "+m+"m "+s+"s left";
-},1000);
+  // ── CARD GAME ──
+  const emojis = ['🌙','⭐','💙','🎻','🌊','🦋','🌸','✨'];
+  let cards = [...emojis, ...emojis];
+  let flipped = [], matched = 0, canFlip = true;
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function buildGame() {
+    matched = 0; flipped = []; canFlip = true;
+    document.getElementById('matchCount').textContent = '0';
+    document.getElementById('winBanner').classList.remove('show');
+    const grid = document.getElementById('cardsGrid');
+    grid.innerHTML = '';
+    shuffle(cards);
+    cards.forEach((emoji, i) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.dataset.emoji = emoji;
+      card.dataset.index = i;
+      card.innerHTML = `
+        <div class="card-inner">
+          <div class="card-face card-back">💙</div>
+          <div class="card-face card-front">${emoji}</div>
+        </div>`;
+      card.addEventListener('click', () => flipCard(card));
+      grid.appendChild(card);
+    });
+  }
+
+  function flipCard(card) {
+    if (!canFlip || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+    card.classList.add('flipped');
+    flipped.push(card);
+    if (flipped.length === 2) {
+      canFlip = false;
+      setTimeout(checkMatch, 700);
+    }
+  }
+
+  function checkMatch() {
+    const [a, b] = flipped;
+    if (a.dataset.emoji === b.dataset.emoji) {
+      a.classList.add('matched'); b.classList.add('matched');
+      matched++;
+      document.getElementById('matchCount').textContent = matched;
+      if (matched === 8) showWin();
+    } else {
+      a.classList.remove('flipped'); b.classList.remove('flipped');
+    }
+    flipped = []; canFlip = true;
+  }
+
+  function showWin() {
+    document.getElementById('winBanner').classList.add('show');
+    document.getElementById('cardsGrid').style.pointerEvents = 'none';
+  }
+
+  document.getElementById('restartBtn').addEventListener('click', buildGame);
+  document.getElementById('revealBtn').addEventListener('click', () => {
+    const msgSection = document.getElementById('message-section');
+    msgSection.classList.add('visible');
+    msgSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    spawnHearts();
+    // auto-play music
+    if (!playing) {
+      playing = true;
+      musicBtn.textContent = '🔇';
+      ytFrame.contentWindow.postMessage(
+        JSON.stringify({ event: 'command', func: 'playVideo' }), '*'
+      );
+    }
+  });
+
+  // ── HEARTS ──
+  function spawnHearts() {
+    const container = document.getElementById('hearts');
+    const h = ['💙','💫','✨','🎻','💜','🩵'];
+    for (let i = 0; i < 12; i++) {
+      const el = document.createElement('div');
+      el.className = 'heart';
+      el.textContent = h[Math.floor(Math.random()*h.length)];
+      el.style.cssText = `
+        left:${Math.random()*90}%;
+        --dur:${3+Math.random()*3}s;
+        --delay:${Math.random()*4}s;
+        animation-delay:${Math.random()*4}s;
+      `;
+      container.appendChild(el);
+    }
+  }
+
+  buildGame();
 </script>
-
 </body>
 </html>
