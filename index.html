@@ -33,18 +33,9 @@
     .scroll-arrow { width:2px; height:40px; background:linear-gradient(to bottom,var(--blue-light),transparent); animation:scrollPulse 1.5s infinite; }
     @keyframes scrollPulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
 
-    /* GALLERY */
-    #gallery { gap:40px; padding:80px 20px; min-height:auto; }
+    /* SECTION TITLES (game) */
     .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,5vw,2.5rem); text-align:center; background:linear-gradient(135deg,var(--gold),var(--blue-soft)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     .section-sub { color:var(--text-soft); font-size:0.9rem; font-style:italic; text-align:center; }
-    .photos-wrap { display:flex; gap:24px; flex-wrap:wrap; justify-content:center; width:100%; max-width:900px; }
-    .photo-card { position:relative; border-radius:16px; overflow:hidden; flex:1 1 220px; max-width:280px; box-shadow:0 0 40px rgba(79,142,247,0.25),0 0 0 1px rgba(79,142,247,0.2); transform:translateY(40px); opacity:0; animation:slideUp 0.8s forwards; transition:transform 0.4s,box-shadow 0.4s; }
-    .photo-card:hover { transform:translateY(-8px) scale(1.02)!important; box-shadow:0 0 60px rgba(79,142,247,0.5),0 0 0 1px rgba(168,196,255,0.4); }
-    .photo-card:nth-child(1){animation-delay:0.1s;} .photo-card:nth-child(2){animation-delay:0.3s;} .photo-card:nth-child(3){animation-delay:0.5s;}
-    @keyframes slideUp { to{transform:translateY(0);opacity:1;} }
-    .photo-card img { width:100%; height:380px; object-fit:cover; object-position:top; display:block; }
-    .photo-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(10,15,46,0.85) 0%,transparent 50%); display:flex; align-items:flex-end; padding:16px; }
-    .photo-caption { font-family:'Playfair Display',serif; font-style:italic; font-size:0.95rem; color:var(--white); text-shadow:0 2px 8px rgba(0,0,0,0.8); }
 
     /* GAME */
     #game-section { gap:32px; }
@@ -148,20 +139,24 @@
   // ── STEP 1: PHOTOS ──────────────────────────────────────────────
   //  Just replace the filenames. Must be in the SAME folder as this file.
 
-  const PHOTO_1 = "photo1.jpeg";   // ← rename to your actual file e.g. "jannu1.jpg"
-  const PHOTO_2 = "photo2.jpeg";   // ← e.g. "jannu2.jpg"
-  const PHOTO_3 = "photo3.jpeg";   // ← e.g. "jannu3.jpg"
-
-  // Captions shown below each photo in the gallery
-  const CAPTION_1 = "She wore blue & stole the whole garden 🌿💙";
-  const CAPTION_2 = "Too cool for the room 😎✨";
-  const CAPTION_3 = "Smiling like she owns the world 🌸";
+  const PHOTO_1 = "photo1.jpg";   // ← rename to your actual file e.g. "jannu1.jpg"
+  const PHOTO_2 = "photo2.jpg";   // ← e.g. "jannu2.jpg"
+  const PHOTO_3 = "photo3.jpg";   // ← e.g. "jannu3.jpg"
 
   // Captions on the hanging polaroids (shown after she wins the game)
   const POLAR_LABEL_1 = "My favourite blue 💙";
   const POLAR_LABEL_2 = "Too cool Jannu 😎";
   const POLAR_LABEL_3 = "My sunshine 🌸";
 
+
+  // ── STEP 2: SONG ────────────────────────────────────────────────
+
+  // OPTION A — YouTube link (easiest, no file needed)
+  // Go to YouTube → find the song → copy the ID from the URL
+  // URL looks like: https://www.youtube.com/watch?v=XXXXXXXXXXX
+  //                                                 ^^^^^^^^^^^ ← paste that here
+  const YOUTUBE_ID = "0Ql6P_-8kXU";  // ← replace with your song's YouTube ID
+  const USE_YOUTUBE = true;           // ← keep true for YouTube
 
   // OPTION B — Local MP3 (if you have the song file)
   // Set USE_YOUTUBE = false and put the mp3 in the same folder
@@ -187,17 +182,10 @@
   </div>
 </section>
 
-<!-- GALLERY -->
-<section id="gallery">
-  <h2 class="section-title">✨ Some of my favourite Jannus ✨</h2>
-  <p class="section-sub">Because every photo of you deserves a spotlight 💙</p>
-  <div class="photos-wrap" id="galleryWrap"></div>
-</section>
-
 <!-- GAME -->
 <section id="game-section">
   <h2 class="section-title">🎮 Unlock the Secret Message</h2>
-  <p class="section-sub" style="max-width:420px; margin-top:8px;">Original message keela irruku itha complete pannunina atha open pannalam 👀💙</p>
+  <p class="section-sub" style="max-width:420px; margin-top:8px;">Match all the pairs to reveal what Harris has been hiding 👀💙</p>
   <div class="game-container">
     <div class="game-instructions">
       Flip the cards &amp; find matching pairs!<br/>
@@ -208,9 +196,9 @@
     <button class="btn-restart" id="restartBtn">🔄 Restart</button>
     <div class="win-banner" id="winBanner">
       <div class="win-emoji">🎉🎻💙</div>
-      <p class="win-text">Paara mudichuta!!</p>
-      <p class="win-sub">Itho unghalukagha… 👇</p>
-      <button class="btn-reveal" id="revealBtn">Thiranthidu seese💌</button>
+      <p class="win-text">Ayyo Jannu! You did it!!</p>
+      <p class="win-sub">Now see what Harris has been wanting to say… 👇</p>
+      <button class="btn-reveal" id="revealBtn">Open the Message 💌</button>
     </div>
   </div>
 </section>
@@ -218,8 +206,8 @@
 <!-- MESSAGE -->
 <section id="message-section">
   <div class="msg-header">
-    <p class="msg-eyebrow">✦ &nbsp; from your mentalll...😁 &nbsp; ✦</p>
-    <h2 class="msg-title">For You, Jannu 💙</h2>
+    <p class="msg-eyebrow">✦ &nbsp; from Harris &nbsp; ✦</p>
+    <h2 class="msg-title">For You, Janani 💙</h2>
   </div>
   <div class="msg-card">
     <div class="hearts" id="hearts"></div>
@@ -277,22 +265,6 @@
 <audio id="localAudio" loop style="display:none;"></audio>
 
 <script>
-  // ── BUILD GALLERY FROM YOUR PHOTOS ──
-  const photos = [
-    { src: PHOTO_1, caption: CAPTION_1 },
-    { src: PHOTO_2, caption: CAPTION_2 },
-    { src: PHOTO_3, caption: CAPTION_3 },
-  ];
-  const galleryWrap = document.getElementById('galleryWrap');
-  photos.forEach(p => {
-    galleryWrap.innerHTML += `
-      <div class="photo-card">
-        <img src="${p.src}" alt="Janani"
-          onerror="this.parentElement.style.background='#1a3a8f'; this.style.display='none'; this.parentElement.innerHTML+='<p style=padding:20px;text-align:center;color:#a8c4ff>📷 Photo not found!<br><small>${p.src}</small></p>'"/>
-        <div class="photo-overlay"><span class="photo-caption">${p.caption}</span></div>
-      </div>`;
-  });
-
   // ── BUILD HANGING POLAROIDS ──
   const polaroids = [
     { src: PHOTO_1, label: POLAR_LABEL_1 },
