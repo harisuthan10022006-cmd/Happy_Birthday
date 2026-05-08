@@ -33,7 +33,7 @@
     .scroll-arrow { width:2px; height:40px; background:linear-gradient(to bottom,var(--blue-light),transparent); animation:scrollPulse 1.5s infinite; }
     @keyframes scrollPulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
 
-    /* SECTION TITLES (game) */
+    /* SECTION TITLES */
     .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.4rem,5vw,2.5rem); text-align:center; background:linear-gradient(135deg,var(--gold),var(--blue-soft)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     .section-sub { color:var(--text-soft); font-size:0.9rem; font-style:italic; text-align:center; }
 
@@ -120,52 +120,36 @@
 <button class="music-btn" id="musicBtn">🎻</button>
 <div id="notes"></div>
 
-
 <!-- ================================================================
   👋 HEY HARRIS! ONLY EDIT THIS BLOCK — nothing else needed!
-================================================================
-
-  STEP 1 — Add your photo filenames
-  (put the jpg/png files in the same folder as this html file)
-
-  STEP 2 — Pick your song (YouTube OR mp3)
-
-  STEP 3 — Edit your message in the HTML below
-           Search for: YOUR MESSAGE HERE
-
 ================================================================ -->
 <script>
 
   // ── STEP 1: PHOTOS ──────────────────────────────────────────────
-  //  Just replace the filenames. Must be in the SAME folder as this file.
+  // Put the photo files in the SAME folder as this HTML file
+  // Then write the exact filenames below
 
-  const PHOTO_1 = "photo1.jpeg";   // ← rename to your actual file e.g. "jannu1.jpg"
-  const PHOTO_2 = "photo2.jpeg";   // ← e.g. "jannu2.jpg"
-  const PHOTO_3 = "photo3.jpeg";   // ← e.g. "jannu3.jpg"
+  const PHOTO_1 = "photo1.jpeg";       // ← e.g. "jannu1.jpeg"
+  const PHOTO_2 = "photo2.jpeg";       // ← e.g. "jannu2.jpeg"
+  const PHOTO_3 = "photo3.jpeg";       // ← e.g. "jannu3.jpeg"
 
-  // Captions on the hanging polaroids (shown after she wins the game)
+  // Captions on the hanging polaroids
   const POLAR_LABEL_1 = "My favourite blue 💙";
   const POLAR_LABEL_2 = "Too cool Jannu 😎";
   const POLAR_LABEL_3 = "My sunshine 🌸";
 
-
   // ── STEP 2: SONG ────────────────────────────────────────────────
+  // Put your song file in the SAME folder as this HTML file
+  // Supported formats: .mp3  .ogg  .wav  .m4a
+  //
+  // Example:  const SONG_FILE = "unakul naane.mp3";
+  //           const SONG_FILE = "harris song.m4a";
 
-  // OPTION A — YouTube link (easiest, no file needed)
-  // Go to YouTube → find the song → copy the ID from the URL
-  // URL looks like: https://www.youtube.com/watch?v=XXXXXXXXXXX
-  //                                                 ^^^^^^^^^^^ ← paste that here
-  const YOUTUBE_ID = "https://youtu.be/NJlATGrt_oU?si=WMPyjtft4hrWmDVF";  // ← replace with your song's YouTube ID
-  const USE_YOUTUBE = true;           // ← keep true for YouTube
-
-  // OPTION B — Local MP3 (if you have the song file)
-  // Set USE_YOUTUBE = false and put the mp3 in the same folder
-  const SONG_FILE = "song.mp3";       // ← your mp3 filename (only if USE_YOUTUBE = false)
+  const SONG_FILE = "song.mp3";        // ← change to YOUR song filename
 
   // ── END OF YOUR SETTINGS ────────────────────────────────────────
 
 </script>
-
 
 <!-- INTRO -->
 <section id="intro">
@@ -185,7 +169,7 @@
 <!-- GAME -->
 <section id="game-section">
   <h2 class="section-title">🎮 Unlock the Secret Message</h2>
-  <p class="section-sub" style="max-width:420px; margin-top:8px;"> Gameaa mudichutu vaa keela msg irruku 👀💙</p>
+  <p class="section-sub" style="max-width:420px; margin-top:8px;">Gameaa mudichutu vaa keela msg irruku 👀💙</p>
   <div class="game-container">
     <div class="game-instructions">
       Flip the cards &amp; find matching pairs!<br/>
@@ -207,19 +191,13 @@
 <section id="message-section">
   <div class="msg-header">
     <p class="msg-eyebrow">✦ &nbsp; from your mentall...😁 &nbsp; ✦</p>
-    <h2 class="msg-title">For You, Jannu💙</h2>
+    <h2 class="msg-title">For You, Jannu 💙</h2>
   </div>
   <div class="msg-card">
     <div class="hearts" id="hearts"></div>
     <div class="msg-body">
 
-      <!-- ================================================================
-           ✏️ YOUR MESSAGE HERE — Edit these paragraphs!
-           Use <span class="msg-highlight">text</span> for white bold text
-           Use <span class="msg-gold">text</span> for golden italic text
-           Add more <p> blocks if you want!
-      ================================================================ -->
-
+      <!-- ✏️ YOUR MESSAGE HERE — edit these paragraphs! -->
       <p>
         <span class="msg-highlight">Jannu,</span> I don't even know where to start.
         You've been my best friend for so long that somewhere along the way,
@@ -241,14 +219,14 @@
         how I feel when I'm talking to you —
         <span class="msg-highlight">quiet, warm, and completely yours.</span>
       </p>
+      <!-- ADD MORE <p> BLOCKS HERE IF YOU WANT -->
 
-      <!-- ================ END OF YOUR MESSAGE ================ -->
     </div>
     <div class="msg-signature">— Harris 🎻</div>
   </div>
 </section>
 
-<!-- HANGING PHOTOS (appears after message is revealed) -->
+<!-- HANGING PHOTOS -->
 <div class="hanging-section" id="hangingSection">
   <p class="hanging-title">🎻 &nbsp; And here's the girl who broke my playlist… 💙</p>
   <div class="hanging-row" id="hangingRow"></div>
@@ -260,11 +238,33 @@
   <img id="lightboxImg" src="" alt="Janani"/>
 </div>
 
-<!-- Audio elements (controlled by JS) -->
-<iframe id="ytAudio" style="display:none;" allow="autoplay" title="bgm"></iframe>
-<audio id="localAudio" loop style="display:none;"></audio>
+<!--
+  🎵 AUDIO — this plays your local song file automatically
+  No YouTube needed! Just put the file in the same folder.
+-->
+<audio id="bgMusic" loop preload="auto"></audio>
 
 <script>
+  // ── LOAD SONG ──
+  const audio = document.getElementById('bgMusic');
+  audio.src = SONG_FILE;
+
+  const musicBtn = document.getElementById('musicBtn');
+  let playing = false;
+
+  function playMusic() {
+    audio.play().catch(() => {
+      // Browser blocked autoplay — user must tap the button manually
+    });
+  }
+  function pauseMusic() { audio.pause(); }
+
+  musicBtn.addEventListener('click', () => {
+    playing = !playing;
+    musicBtn.textContent = playing ? '🔇' : '🎻';
+    playing ? playMusic() : pauseMusic();
+  });
+
   // ── BUILD HANGING POLAROIDS ──
   const polaroids = [
     { src: PHOTO_1, label: POLAR_LABEL_1 },
@@ -282,30 +282,6 @@
         <div class="polaroid-label">${p.label}</div>
       </div>`;
     hangingRow.appendChild(frame);
-  });
-
-  // ── SETUP SONG ──
-  const ytFrame = document.getElementById('ytAudio');
-  const localAudio = document.getElementById('localAudio');
-  if (USE_YOUTUBE && YOUTUBE_ID) {
-    ytFrame.src = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=0&loop=1&playlist=${YOUTUBE_ID}&controls=0&enablejsapi=1`;
-  } else {
-    localAudio.src = SONG_FILE;
-  }
-  function playMusic() {
-    if (USE_YOUTUBE) ytFrame.contentWindow.postMessage(JSON.stringify({event:'command',func:'playVideo'}),'*');
-    else localAudio.play();
-  }
-  function pauseMusic() {
-    if (USE_YOUTUBE) ytFrame.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo'}),'*');
-    else localAudio.pause();
-  }
-  const musicBtn = document.getElementById('musicBtn');
-  let playing = false;
-  musicBtn.addEventListener('click', () => {
-    playing = !playing;
-    musicBtn.textContent = playing ? '🔇' : '🎻';
-    playing ? playMusic() : pauseMusic();
   });
 
   // ── STARS ──
@@ -352,23 +328,32 @@
   }
   function checkMatch() {
     const[a,b]=flipped;
-    if(a.dataset.emoji===b.dataset.emoji){ a.classList.add('matched');b.classList.add('matched'); matched++; document.getElementById('matchCount').textContent=matched; if(matched===8)showWin(); }
-    else { a.classList.remove('flipped');b.classList.remove('flipped'); }
+    if(a.dataset.emoji===b.dataset.emoji){
+      a.classList.add('matched');b.classList.add('matched');
+      matched++; document.getElementById('matchCount').textContent=matched;
+      if(matched===8) showWin();
+    } else { a.classList.remove('flipped');b.classList.remove('flipped'); }
     flipped=[]; canFlip=true;
   }
-  function showWin() { document.getElementById('winBanner').classList.add('show'); document.getElementById('cardsGrid').style.pointerEvents='none'; }
-  document.getElementById('restartBtn').addEventListener('click',buildGame);
-  document.getElementById('revealBtn').addEventListener('click',()=>{
-    const ms=document.getElementById('message-section');
-    const hs=document.getElementById('hangingSection');
-    ms.classList.add('visible'); hs.classList.add('visible');
-    ms.scrollIntoView({behavior:'smooth',block:'start'});
+  function showWin() {
+    document.getElementById('winBanner').classList.add('show');
+    document.getElementById('cardsGrid').style.pointerEvents='none';
+  }
+  document.getElementById('restartBtn').addEventListener('click', buildGame);
+  document.getElementById('revealBtn').addEventListener('click', () => {
+    const ms = document.getElementById('message-section');
+    const hs = document.getElementById('hangingSection');
+    ms.classList.add('visible');
+    hs.classList.add('visible');
+    ms.scrollIntoView({ behavior:'smooth', block:'start' });
     spawnHearts();
-    if(!playing){playing=true;musicBtn.textContent='🔇';playMusic();}
+    // Auto-play song when message is revealed
+    if (!playing) { playing=true; musicBtn.textContent='🔇'; playMusic(); }
   });
+
   function spawnHearts() {
-    const container=document.getElementById('hearts');
-    ['💙','💫','✨','🎻','💜','🩵'].forEach(h=>{
+    const container = document.getElementById('hearts');
+    ['💙','💫','✨','🎻','💜','🩵'].forEach(h => {
       for(let i=0;i<2;i++){
         const el=document.createElement('div'); el.className='heart'; el.textContent=h;
         el.style.cssText=`left:${Math.random()*90}%;--dur:${3+Math.random()*3}s;animation-delay:${Math.random()*4}s;`;
@@ -380,7 +365,7 @@
   // ── LIGHTBOX ──
   function openLightbox(src) { document.getElementById('lightboxImg').src=src; document.getElementById('lightbox').classList.add('open'); }
   function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape')closeLightbox(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
 
   buildGame();
 </script>
